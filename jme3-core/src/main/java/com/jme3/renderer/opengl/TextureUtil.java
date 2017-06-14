@@ -280,7 +280,7 @@ final class TextureUtil {
                 data.limit(pos + mipSizes[i]);
             }
 
-            uploadTextureLevel(oglFormat, new TextureImage(target, i, index, sliceCount, mipWidth, mipHeight, mipDepth, samples, data));
+            uploadTextureLevel(oglFormat, new TextureImageBuilder().setTarget(target).setLevel(i).setSlice(index).setSliceCount(sliceCount).setWidth(mipWidth).setHeight(mipHeight).setDepth(mipDepth).setSamples(samples).setData(data).createTextureImage());
 
             pos += mipSizes[i];
         }

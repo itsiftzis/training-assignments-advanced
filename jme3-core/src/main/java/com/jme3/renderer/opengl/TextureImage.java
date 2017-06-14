@@ -3,27 +3,15 @@ package com.jme3.renderer.opengl;
 import java.nio.ByteBuffer;
 
 public class TextureImage {
-    private final int target;
-    private final int level;
-    private final int slice;
-    private final int sliceCount;
-    private final int width;
-    private final int height;
-    private final int depth;
-    private final int samples;
-    private final ByteBuffer data;
-
-    public TextureImage(int target, int level, int slice, int sliceCount, int width, int height, int depth, int samples, ByteBuffer data) {
-        this.target = target;
-        this.level = level;
-        this.slice = slice;
-        this.sliceCount = sliceCount;
-        this.width = width;
-        this.height = height;
-        this.depth = depth;
-        this.samples = samples;
-        this.data = data;
-    }
+    private final int target = 0;
+    private final int level = 0;
+    private final int slice = 0;
+    private final int sliceCount = 0;
+    private final int width = 0;
+    private final int height = 0;
+    private final int depth = 0;
+    private final int samples = 0;
+    private final ByteBuffer data = null;
 
     public int getTarget() {
         return target;
