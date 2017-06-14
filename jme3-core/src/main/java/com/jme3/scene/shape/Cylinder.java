@@ -149,7 +149,7 @@ public class Cylinder extends Mesh {
     public Cylinder(int axisSamples, int radialSamples,
             float radius, float radius2, float height, boolean closed, boolean inverted) {
         super();
-        updateGeometry(axisSamples, radialSamples, radius, radius2, height, closed, inverted);
+        updateGeometry(new CylinderData(axisSamples, radialSamples, radius, radius2, height), closed, inverted);
     }
 
     /**
@@ -201,31 +201,23 @@ public class Cylinder extends Mesh {
     /**
      * Rebuilds the cylinder based on a new set of parameters.
      *
-     * @param axisSamples the number of samples along the axis.
-     * @param radialSamples the number of samples around the radial.
-     * @param radius the radius of the bottom of the cylinder.
-     * @param radius2 the radius of the top of the cylinder.
-     * @param height the cylinder's height.
+     * @param cylinderData
      * @param closed should the cylinder have top and bottom surfaces.
      * @param inverted is the cylinder is meant to be viewed from the inside.
      */
-    public void updateGeometry(int axisSamples, int radialSamples,
-            float radius, float radius2, float height, boolean closed, boolean inverted) {
-        this.axisSamples = axisSamples;
-        this.radialSamples = radialSamples;
-        this.radius = radius;
-        this.radius2 = radius2;
-        this.height = height;
+    public void updateGeometry(CylinderData cylinderData, boolean closed, boolean inverted) {
+        this.axisSamples = cylinderData.getAxisSamples();
+        this.radialSamples = cylinderData.getRadialSamples();
+        this.radius = cylinderData.getRadius();
+        this.radius2 = cylinderData.getRadius2();
+        this.height = cylinderData.getHeight();
         this.closed = closed;
         this.inverted = inverted;
 
-//        VertexBuffer pvb = getBuffer(Type.Position);
-//        VertexBuffer nvb = getBuffer(Type.Normal);
-//        VertexBuffer tvb = getBuffer(Type.TexCoord);
         axisSamples += (closed ? 2 : 0);
 
         // Vertices
-        int vertCount = axisSamples * (radialSamples + 1) + (closed ? 2 : 0);
+        int vertCount = cylinderData.getAxisSamples() * (cylinderData.getRadialSamples() + 1) + (closed ? 2 : 0);
 
         setBuffer(Type.Position, 3, createVector3Buffer(getFloatBuffer(Type.Position), vertCount));
 
@@ -235,42 +227,42 @@ public class Cylinder extends Mesh {
         // Texture co-ordinates
         setBuffer(Type.TexCoord, 2, createVector2Buffer(vertCount));
 
-        int triCount = ((closed ? 2 : 0) + 2 * (axisSamples - 1)) * radialSamples;
+        int triCount = ((closed ? 2 : 0) + 2 * (cylinderData.getAxisSamples() - 1)) * cylinderData.getRadialSamples();
         
         setBuffer(Type.Index, 3, createShortBuffer(getShortBuffer(Type.Index), 3 * triCount));
 
         // generate geometry
-        float inverseRadial = 1.0f / radialSamples;
-        float inverseAxisLess = 1.0f / (closed ? axisSamples - 3 : axisSamples - 1);
-        float inverseAxisLessTexture = 1.0f / (axisSamples - 1);
-        float halfHeight = 0.5f * height;
+        float inverseRadial = 1.0f / cylinderData.getRadialSamples();
+        float inverseAxisLess = 1.0f / (closed ? cylinderData.getAxisSamples() - 3 : cylinderData.getAxisSamples() - 1);
+        float inverseAxisLessTexture = 1.0f / (cylinderData.getAxisSamples() - 1);
+        float halfHeight = 0.5f * cylinderData.getHeight();
 
         // Generate points on the unit circle to be used in computing the mesh
         // points on a cylinder slice.
-        float[] sin = new float[radialSamples + 1];
-        float[] cos = new float[radialSamples + 1];
+        float[] sin = new float[cylinderData.getRadialSamples() + 1];
+        float[] cos = new float[cylinderData.getRadialSamples() + 1];
 
-        for (int radialCount = 0; radialCount < radialSamples; radialCount++) {
+        for (int radialCount = 0; radialCount < cylinderData.getRadialSamples(); radialCount++) {
             float angle = FastMath.TWO_PI * inverseRadial * radialCount;
             cos[radialCount] = FastMath.cos(angle);
             sin[radialCount] = FastMath.sin(angle);
         }
-        sin[radialSamples] = sin[0];
-        cos[radialSamples] = cos[0];
+        sin[cylinderData.getRadialSamples()] = sin[0];
+        cos[cylinderData.getRadialSamples()] = cos[0];
 
         // calculate normals
         Vector3f[] vNormals = null;
         Vector3f vNormal = Vector3f.UNIT_Z;
 
-        if ((height != 0.0f) && (radius != radius2)) {
-            vNormals = new Vector3f[radialSamples];
-            Vector3f vHeight = Vector3f.UNIT_Z.mult(height);
+        if ((cylinderData.getHeight() != 0.0f) && (cylinderData.getRadius() != cylinderData.getRadius2())) {
+            vNormals = new Vector3f[cylinderData.getRadialSamples()];
+            Vector3f vHeight = Vector3f.UNIT_Z.mult(cylinderData.getHeight());
             Vector3f vRadial = new Vector3f();
 
-            for (int radialCount = 0; radialCount < radialSamples; radialCount++) {
+            for (int radialCount = 0; radialCount < cylinderData.getRadialSamples(); radialCount++) {
                 vRadial.set(cos[radialCount], sin[radialCount], 0.0f);
-                Vector3f vRadius = vRadial.mult(radius);
-                Vector3f vRadius2 = vRadial.mult(radius2);
+                Vector3f vRadius = vRadial.mult(cylinderData.getRadius());
+                Vector3f vRadius2 = vRadial.mult(cylinderData.getRadius2());
                 Vector3f vMantle = vHeight.subtract(vRadius2.subtract(vRadius));
                 Vector3f vTangent = vRadial.cross(Vector3f.UNIT_Z);
                 vNormals[radialCount] = vMantle.cross(vTangent).normalize();
@@ -283,7 +275,7 @@ public class Cylinder extends Mesh {
 
         // generate the cylinder itself
         Vector3f tempNormal = new Vector3f();
-        for (int axisCount = 0, i = 0; axisCount < axisSamples; axisCount++, i++) {
+        for (int axisCount = 0, i = 0; axisCount < cylinderData.getAxisSamples(); axisCount++, i++) {
             float axisFraction;
             float axisFractionTexture;
             int topBottom = 0;
@@ -295,7 +287,7 @@ public class Cylinder extends Mesh {
                     topBottom = -1; // bottom
                     axisFraction = 0;
                     axisFractionTexture = inverseAxisLessTexture;
-                } else if (axisCount == axisSamples - 1) {
+                } else if (axisCount == cylinderData.getAxisSamples() - 1) {
                     topBottom = 1; // top
                     axisFraction = 1;
                     axisFractionTexture = 1 - inverseAxisLessTexture;
@@ -306,18 +298,18 @@ public class Cylinder extends Mesh {
             }
 
             // compute center of slice
-            float z = -halfHeight + height * axisFraction;
+            float z = -halfHeight + cylinderData.getHeight() * axisFraction;
             Vector3f sliceCenter = new Vector3f(0, 0, z);
 
             // compute slice vertices with duplication at end point
             int save = i;
-            for (int radialCount = 0; radialCount < radialSamples; radialCount++, i++) {
+            for (int radialCount = 0; radialCount < cylinderData.getRadialSamples(); radialCount++, i++) {
                 float radialFraction = radialCount * inverseRadial; // in [0,1)
                 tempNormal.set(cos[radialCount], sin[radialCount], 0.0f);
 
                 if (vNormals != null) {
                     vNormal = vNormals[radialCount];
-                } else if (radius == radius2) {
+                } else if (cylinderData.getRadius() == cylinderData.getRadius2()) {
                     vNormal = tempNormal;
                 }
 
@@ -330,7 +322,7 @@ public class Cylinder extends Mesh {
                     nb.put(0).put(0).put(topBottom * (inverted ? -1 : 1));
                 }
 
-                tempNormal.multLocal((radius - radius2) * axisFraction + radius2)
+                tempNormal.multLocal((cylinderData.getRadius() - cylinderData.getRadius2()) * axisFraction + cylinderData.getRadius2())
                         .addLocal(sliceCenter);
                 pb.put(tempNormal.x).put(tempNormal.y).put(tempNormal.z);
 
@@ -357,13 +349,13 @@ public class Cylinder extends Mesh {
         IndexBuffer ib = getIndexBuffer();
         int index = 0;
         // Connectivity
-        for (int axisCount = 0, axisStart = 0; axisCount < axisSamples - 1; axisCount++) {
+        for (int axisCount = 0, axisStart = 0; axisCount < cylinderData.getAxisSamples() - 1; axisCount++) {
             int i0 = axisStart;
             int i1 = i0 + 1;
-            axisStart += radialSamples + 1;
+            axisStart += cylinderData.getRadialSamples() + 1;
             int i2 = axisStart;
             int i3 = i2 + 1;
-            for (int i = 0; i < radialSamples; i++) {
+            for (int i = 0; i < cylinderData.getRadialSamples(); i++) {
                 if (closed && axisCount == 0) {
                     if (!inverted) {
                         ib.put(index++, i0++);
@@ -374,7 +366,7 @@ public class Cylinder extends Mesh {
                         ib.put(index++, i1++);
                         ib.put(index++, vertCount - 2);
                     }
-                } else if (closed && axisCount == axisSamples - 2) {
+                } else if (closed && axisCount == cylinderData.getAxisSamples() - 2) {
                     ib.put(index++, i2++);
                     ib.put(index++, inverted ? vertCount - 1 : i3++);
                     ib.put(index++, inverted ? i3++ : vertCount - 1);
