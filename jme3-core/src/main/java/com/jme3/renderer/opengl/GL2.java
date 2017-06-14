@@ -77,7 +77,7 @@ public interface GL2 extends GL {
     public void glPolygonMode(int face, int mode);
     public void glDrawBuffer(int mode);
     public void glReadBuffer(int mode);
-    public void glCompressedTexImage3D(int target, int level, int internalformat, int width, int height, int depth, int border, ByteBuffer data);
+    public void glCompressedTexImage3D(TextureImage textureImage, int internalformat, int border);
     public void glCompressedTexSubImage3D(int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int format, ByteBuffer data);
     public void glTexImage3D(int target, int level, int internalFormat, int width, int height, int depth, int border, int format, int type, ByteBuffer data);
     public void glTexSubImage3D(int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int format, int type, ByteBuffer data);

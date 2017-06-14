@@ -41,8 +41,8 @@ public class GLDebugDesktop extends GLDebugES implements GL2, GL3, GL4 {
         checkError();
     }
 
-    public void glCompressedTexImage3D(int target, int level, int internalformat, int width, int height, int depth, int border, ByteBuffer data) {
-        gl2.glCompressedTexImage3D(target, level, internalformat, width, height, depth, border, data);
+    public void glCompressedTexImage3D(TextureImage textureImage, int internalformat, int border) {
+        gl2.glCompressedTexImage3D(textureImage, internalformat, border);
         checkError();
     }
 
