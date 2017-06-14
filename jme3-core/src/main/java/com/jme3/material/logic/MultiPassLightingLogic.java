@@ -31,7 +31,6 @@
  */
 package com.jme3.material.logic;
 
-import com.jme3.asset.AssetManager;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.light.Light;
@@ -39,26 +38,23 @@ import com.jme3.light.LightList;
 import com.jme3.light.PointLight;
 import com.jme3.light.SpotLight;
 import com.jme3.material.RenderState;
+import com.jme3.material.RenderStateImpl;
 import com.jme3.material.TechniqueDef;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.math.Vector4f;
-import com.jme3.renderer.Caps;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.Renderer;
 import com.jme3.scene.Geometry;
-import com.jme3.shader.DefineList;
 import com.jme3.shader.Shader;
 import com.jme3.shader.Uniform;
 import com.jme3.shader.VarType;
 import com.jme3.util.TempVars;
-import java.util.EnumSet;
 
 public final class MultiPassLightingLogic extends DefaultTechniqueDefLogic {
 
-    private static final RenderState ADDITIVE_LIGHT = new RenderState();
+    private static final RenderState ADDITIVE_LIGHT = new RenderStateImpl();
     private static final Quaternion NULL_DIR_LIGHT = new Quaternion(0, -1, 0, -1);
     
     private final ColorRGBA ambientLightColor = new ColorRGBA(0, 0, 0, 1);

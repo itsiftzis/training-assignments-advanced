@@ -35,6 +35,7 @@ import com.jme3.export.JmeExporter;
 import com.jme3.export.JmeImporter;
 import com.jme3.export.Savable;
 import com.jme3.util.NativeObject;
+
 import java.io.IOException;
 
 public abstract class Filter extends NativeObject implements Savable {

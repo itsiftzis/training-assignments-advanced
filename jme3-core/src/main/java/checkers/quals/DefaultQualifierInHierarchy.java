@@ -1,10 +1,11 @@
 package checkers.quals;
 
 import java.lang.annotation.Documented;
-import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 
 /**
  * Indicates that the annotated qualifier is the default qualifier in the

@@ -30,10 +30,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.jme3.app.state;
- 
+
 import com.jme3.app.Application;
 import com.jme3.renderer.RenderManager;
 import com.jme3.util.SafeArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 

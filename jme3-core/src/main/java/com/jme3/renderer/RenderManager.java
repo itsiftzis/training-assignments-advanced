@@ -38,9 +38,10 @@ import com.jme3.material.MatParamOverride;
 import com.jme3.material.Material;
 import com.jme3.material.MaterialDef;
 import com.jme3.material.RenderState;
+import com.jme3.material.RenderStateImpl;
 import com.jme3.material.Technique;
 import com.jme3.material.TechniqueDef;
-import com.jme3.math.*;
+import com.jme3.math.Matrix4f;
 import com.jme3.post.SceneProcessor;
 import com.jme3.profile.AppProfiler;
 import com.jme3.profile.AppStep;
@@ -49,13 +50,18 @@ import com.jme3.renderer.queue.GeometryList;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
-import com.jme3.scene.*;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Mesh;
+import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
+import com.jme3.scene.VertexBuffer;
 import com.jme3.shader.Shader;
 import com.jme3.shader.UniformBinding;
 import com.jme3.shader.UniformBindingManager;
 import com.jme3.system.NullRenderer;
 import com.jme3.system.Timer;
 import com.jme3.util.SafeArrayList;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -360,7 +366,7 @@ public class RenderManager {
 
     /**
      * Returns the forced render state previously set with 
-     * {@link #setForcedRenderState(com.jme3.material.RenderState) }.
+     * {@link #setForcedRenderState(RenderState) }.
      * @return the forced render state
      */
     public RenderState getForcedRenderState() {
@@ -546,7 +552,7 @@ public class RenderManager {
      * of the {@link MaterialDef#getDefaultTechniques() default techniques} is
      * used.
      * <p>
-     * If a {@link #setForcedRenderState(com.jme3.material.RenderState) forced
+     * If a {@link #setForcedRenderState(RenderState) forced
      * render state} is set on this RenderManager, then it is used
      * for rendering the material, and the material's own render state is ignored.
      * Otherwise, the material's render state is used as intended.
@@ -554,7 +560,7 @@ public class RenderManager {
      * @param geom The geometry to render
        * 
      * @see Technique
-     * @see RenderState
+     * @see RenderStateImpl
      * @see Material#selectTechnique(java.lang.String, com.jme3.renderer.RenderManager) 
      * @see Material#render(com.jme3.scene.Geometry, com.jme3.renderer.RenderManager) 
      */

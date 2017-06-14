@@ -31,8 +31,12 @@
  */
 package com.jme3.math;
 
-import com.jme3.export.*;
-import java.io.Externalizable;
+import com.jme3.export.InputCapsule;
+import com.jme3.export.JmeExporter;
+import com.jme3.export.JmeImporter;
+import com.jme3.export.OutputCapsule;
+import com.jme3.export.Savable;
+
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;

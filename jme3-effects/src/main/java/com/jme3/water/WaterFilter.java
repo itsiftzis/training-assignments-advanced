@@ -39,9 +39,13 @@ import com.jme3.export.OutputCapsule;
 import com.jme3.light.DirectionalLight;
 import com.jme3.light.Light;
 import com.jme3.material.Material;
-import com.jme3.math.*;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Matrix4f;
+import com.jme3.math.Plane;
+import com.jme3.math.Ray;
+import com.jme3.math.Vector2f;
+import com.jme3.math.Vector3f;
 import com.jme3.post.Filter;
-import com.jme3.post.Filter.Pass;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.Renderer;
@@ -51,7 +55,7 @@ import com.jme3.scene.Spatial;
 import com.jme3.texture.Image.Format;
 import com.jme3.texture.Texture.WrapMode;
 import com.jme3.texture.Texture2D;
-import com.jme3.util.TempVars;
+
 import java.io.IOException;
 
 /**

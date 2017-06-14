@@ -46,9 +46,11 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.util.TempVars;
+
+import java.util.List;
+
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import java.util.List;
 
 /**
  * Includes various useful shadow mapping functions.

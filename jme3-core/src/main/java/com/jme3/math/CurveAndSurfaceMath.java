@@ -32,6 +32,7 @@
 package com.jme3.math;
 
 import com.jme3.math.Spline.SplineType;
+
 import java.util.List;
 
 /**

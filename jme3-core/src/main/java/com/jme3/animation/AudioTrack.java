@@ -40,7 +40,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.util.TempVars;
 import com.jme3.util.clone.Cloner;
-import com.jme3.util.clone.JmeCloneable;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

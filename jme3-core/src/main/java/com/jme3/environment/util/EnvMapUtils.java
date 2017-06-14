@@ -34,6 +34,8 @@ package com.jme3.environment.util;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Quaternion;
+import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.math.Vector4f;
 import com.jme3.scene.Geometry;
@@ -46,13 +48,19 @@ import com.jme3.texture.TextureCubeMap;
 import com.jme3.texture.image.ColorSpace;
 import com.jme3.ui.Picture;
 import com.jme3.util.BufferUtils;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import static com.jme3.math.FastMath.*;
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector2f;
 import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.TempVars;
+
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+
+import static com.jme3.math.FastMath.PI;
+import static com.jme3.math.FastMath.abs;
+import static com.jme3.math.FastMath.clamp;
+import static com.jme3.math.FastMath.cos;
+import static com.jme3.math.FastMath.pow;
+import static com.jme3.math.FastMath.sin;
+import static com.jme3.math.FastMath.sqrt;
 
 /**
  *

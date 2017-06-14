@@ -34,7 +34,11 @@ package com.jme3.post;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.Vector2f;
-import com.jme3.renderer.*;
+import com.jme3.renderer.Camera;
+import com.jme3.renderer.Caps;
+import com.jme3.renderer.RenderManager;
+import com.jme3.renderer.Renderer;
+import com.jme3.renderer.ViewPort;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.texture.FrameBuffer;
 import com.jme3.texture.Image;
@@ -44,6 +48,7 @@ import com.jme3.texture.Texture.MagFilter;
 import com.jme3.texture.Texture.MinFilter;
 import com.jme3.texture.Texture2D;
 import com.jme3.ui.Picture;
+
 import java.util.Collection;
 import java.util.logging.Logger;
 

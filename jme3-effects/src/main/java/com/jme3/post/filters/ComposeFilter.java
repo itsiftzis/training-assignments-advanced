@@ -41,6 +41,7 @@ import com.jme3.post.Filter;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.texture.Texture2D;
+
 import java.io.IOException;
 
 /**

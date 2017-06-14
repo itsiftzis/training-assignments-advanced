@@ -34,13 +34,21 @@ package com.jme3.material;
 import com.jme3.asset.AssetKey;
 import com.jme3.asset.AssetManager;
 import com.jme3.asset.CloneableSmartAsset;
-import com.jme3.export.*;
+import com.jme3.export.InputCapsule;
+import com.jme3.export.JmeExporter;
+import com.jme3.export.JmeImporter;
+import com.jme3.export.OutputCapsule;
+import com.jme3.export.Savable;
 import com.jme3.light.LightList;
 import com.jme3.material.RenderState.BlendMode;
 import com.jme3.material.RenderState.FaceCullMode;
 import com.jme3.material.TechniqueDef.LightMode;
 import com.jme3.material.TechniqueDef.ShadowMode;
-import com.jme3.math.*;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Matrix4f;
+import com.jme3.math.Vector2f;
+import com.jme3.math.Vector3f;
+import com.jme3.math.Vector4f;
 import com.jme3.renderer.Caps;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.Renderer;
@@ -57,7 +65,11 @@ import com.jme3.util.ListMap;
 import com.jme3.util.SafeArrayList;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -84,8 +96,8 @@ public class Material implements CloneableSmartAsset, Cloneable, Savable {
     private ListMap<String, MatParam> paramValues = new ListMap<String, MatParam>();
     private Technique technique;
     private HashMap<String, Technique> techniques = new HashMap<String, Technique>();
-    private RenderState additionalState = null;
-    private RenderState mergedRenderState = new RenderState();
+    private RenderStateImpl additionalState = null;
+    private RenderStateImpl mergedRenderState = new RenderStateImpl();
     private boolean transparent = false;
     private boolean receivesShadows = false;
     private int sortingId = -1;
@@ -374,7 +386,7 @@ public class Material implements CloneableSmartAsset, Cloneable, Savable {
     }
 
     /**
-     * Acquire the additional {@link RenderState render state} to apply
+     * Acquire the additional {@link RenderStateImpl render state} to apply
      * for this material.
      *
      * <p>The first call to this method will create an additional render
@@ -384,9 +396,9 @@ public class Material implements CloneableSmartAsset, Cloneable, Savable {
      *
      * @return The additional render state.
      */
-    public RenderState getAdditionalRenderState() {
+    public RenderStateImpl getAdditionalRenderState() {
         if (additionalState == null) {
-            additionalState = RenderState.ADDITIONAL.clone();
+            additionalState = RenderStateImpl.ADDITIONAL.clone();
         }
         return additionalState;
     }
@@ -818,7 +830,7 @@ public class Material implements CloneableSmartAsset, Cloneable, Savable {
             if (techniqueDef.getRenderState() != null) {
                 renderer.applyRenderState(techniqueDef.getRenderState().copyMergedTo(additionalState, mergedRenderState));
             } else {
-                renderer.applyRenderState(RenderState.DEFAULT.copyMergedTo(additionalState, mergedRenderState));
+                renderer.applyRenderState(RenderStateImpl.DEFAULT.copyMergedTo(additionalState, mergedRenderState));
             }
         }
     }
@@ -894,7 +906,7 @@ public class Material implements CloneableSmartAsset, Cloneable, Savable {
      * including those that are bound to material parameters.
      * The technique can re-use the shader from the last frame if
      * no changes to the defines occurred.</li></ul>
-     * <li>Set the {@link RenderState} to use for rendering. The render states are
+     * <li>Set the {@link RenderStateImpl} to use for rendering. The render states are
      * applied in this order (later RenderStates override earlier RenderStates):<ol>
      * <li>{@link TechniqueDef#getRenderState() Technique Definition's RenderState}
      * - i.e. specific renderstate that is required for the shader.</li>
@@ -1005,7 +1017,7 @@ public class Material implements CloneableSmartAsset, Cloneable, Savable {
         InputCapsule ic = im.getCapsule(this);
 
         name = ic.readString("name", null);
-        additionalState = (RenderState) ic.readSavable("render_state", null);
+        additionalState = (RenderStateImpl) ic.readSavable("render_state", null);
         transparent = ic.readBoolean("is_transparent", false);
 
         // Load the material def

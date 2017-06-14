@@ -31,8 +31,18 @@
  */
 package com.jme3.asset.plugins;
 
-import com.jme3.asset.*;
-import java.io.*;
+import com.jme3.asset.AssetInfo;
+import com.jme3.asset.AssetKey;
+import com.jme3.asset.AssetLoadException;
+import com.jme3.asset.AssetLocator;
+import com.jme3.asset.AssetManager;
+import com.jme3.asset.AssetNotFoundException;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * <code>FileLocator</code> allows you to specify a folder where to

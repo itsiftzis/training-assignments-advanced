@@ -34,11 +34,12 @@ package com.jme3.shader;
 import com.jme3.asset.AssetKey;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.ShaderGenerationInfo;
-import com.jme3.material.Technique;
 import com.jme3.material.TechniqueDef;
 import com.jme3.shader.Shader.ShaderType;
+
 import java.util.List;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class is the base for a shader generator using the ShaderNodes system,

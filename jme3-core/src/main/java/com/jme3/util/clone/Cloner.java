@@ -37,10 +37,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *  A deep clone utility that provides similar object-graph-preserving

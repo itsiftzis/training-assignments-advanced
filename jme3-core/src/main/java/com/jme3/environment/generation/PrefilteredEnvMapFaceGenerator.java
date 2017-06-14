@@ -31,24 +31,26 @@
  */
 package com.jme3.environment.generation;
 
+import com.jme3.app.Application;
 import com.jme3.environment.util.CubeMapWrapper;
 import com.jme3.environment.util.EnvMapUtils;
-import com.jme3.app.Application;
 import com.jme3.math.ColorRGBA;
-import static com.jme3.math.FastMath.abs;
-import static com.jme3.math.FastMath.clamp;
-import static com.jme3.math.FastMath.pow;
-import static com.jme3.math.FastMath.sqrt;
 import com.jme3.math.Vector3f;
 import com.jme3.math.Vector4f;
 import com.jme3.texture.TextureCubeMap;
+
+import java.util.concurrent.Callable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import static com.jme3.environment.util.EnvMapUtils.getHammersleyPoint;
 import static com.jme3.environment.util.EnvMapUtils.getRoughnessFromMip;
 import static com.jme3.environment.util.EnvMapUtils.getSampleFromMip;
 import static com.jme3.environment.util.EnvMapUtils.getVectorFromCubemapFaceTexCoord;
-import java.util.concurrent.Callable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static com.jme3.math.FastMath.abs;
+import static com.jme3.math.FastMath.clamp;
+import static com.jme3.math.FastMath.pow;
+import static com.jme3.math.FastMath.sqrt;
 
 /**
  *

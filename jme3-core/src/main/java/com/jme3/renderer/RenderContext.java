@@ -32,6 +32,7 @@
 package com.jme3.renderer;
 
 import com.jme3.material.RenderState;
+import com.jme3.material.RenderStateImpl;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer;
@@ -46,22 +47,22 @@ import com.jme3.texture.Image;
 public class RenderContext {
 
     /**
-     * @see RenderState#setFaceCullMode(com.jme3.material.RenderState.FaceCullMode)
+     * @see RenderStateImpl#setFaceCullMode(RenderState.FaceCullMode)
      */
     public RenderState.FaceCullMode cullMode = RenderState.FaceCullMode.Off;
 
     /**
-     * @see RenderState#setDepthTest(boolean) 
+     * @see RenderStateImpl#setDepthTest(boolean)
      */
     public boolean depthTestEnabled = false;
 
     /**
-     * @see RenderState#setDepthWrite(boolean) 
+     * @see RenderStateImpl#setDepthWrite(boolean)
      */
     public boolean depthWriteEnabled = true;
 
     /**
-     * @see RenderState#setColorWrite(boolean) 
+     * @see RenderStateImpl#setColorWrite(boolean)
      */
     public boolean colorWriteEnabled = true;
 
@@ -71,17 +72,17 @@ public class RenderContext {
     public boolean clipRectEnabled = false;
 
     /**
-     * @see RenderState#setPolyOffset(float, float) 
+     * @see RenderStateImpl#setPolyOffset(float, float)
      */
     public boolean polyOffsetEnabled = false;
     
     /**
-     * @see RenderState#setPolyOffset(float, float) 
+     * @see RenderStateImpl#setPolyOffset(float, float)
      */
     public float polyOffsetFactor = 0;
     
     /**
-     * @see RenderState#setPolyOffset(float, float) 
+     * @see RenderStateImpl#setPolyOffset(float, float)
      */
     public float polyOffsetUnits = 0;
 
@@ -91,27 +92,27 @@ public class RenderContext {
     public float pointSize = 1;
     
     /**
-     * @see RenderState#setLineWidth(float)
+     * @see RenderStateImpl#setLineWidth(float)
      */
     public float lineWidth = 1;
 
     /**
-     * @see RenderState#setBlendMode(com.jme3.material.RenderState.BlendMode) 
+     * @see RenderStateImpl#setBlendMode(RenderState.BlendMode)
      */
     public RenderState.BlendMode blendMode = RenderState.BlendMode.Off;
 
     /**
-     * @see RenderState#setBlendEquation(com.jme3.material.RenderState.BlendEquation) 
+     * @see RenderStateImpl#setBlendEquation(RenderState.BlendEquation)
      */
     public RenderState.BlendEquation blendEquation = RenderState.BlendEquation.Add;
     
     /**
-     * @see RenderState#setBlendEquationAlpha(com.jme3.material.RenderState.BlendEquationAlpha) 
+     * @see RenderStateImpl#setBlendEquationAlpha(RenderState.BlendEquationAlpha)
      */
     public RenderState.BlendEquationAlpha blendEquationAlpha = RenderState.BlendEquationAlpha.InheritColor;
 
     /**
-     * @see RenderState#setWireframe(boolean) 
+     * @see RenderStateImpl#setWireframe(boolean)
      */
     public boolean wireframe = false;
 
@@ -299,7 +300,7 @@ public class RenderContext {
         frontStencilFunction = RenderState.TestFunction.Always;
         backStencilFunction = RenderState.TestFunction.Always;
         
-        depthFunc = RenderState.TestFunction.LessOrEqual;    
+        depthFunc = RenderState.TestFunction.LessOrEqual;
         alphaFunc = RenderState.TestFunction.Greater;
         clearColor.set(0,0,0,0);
     }

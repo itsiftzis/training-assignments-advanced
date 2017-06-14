@@ -38,6 +38,7 @@ import com.jme3.export.OutputCapsule;
 import com.jme3.shader.VarType;
 import com.jme3.texture.Texture;
 import com.jme3.texture.image.ColorSpace;
+
 import java.io.IOException;
 
 public class MatParamTexture extends MatParam {

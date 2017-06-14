@@ -31,16 +31,6 @@
  */
 package com.jme3.scene;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import com.jme3.asset.AssetInfo;
 import com.jme3.asset.AssetManager;
 import com.jme3.asset.ModelKey;
@@ -50,6 +40,16 @@ import com.jme3.export.JmeImporter;
 import com.jme3.export.OutputCapsule;
 import com.jme3.util.SafeArrayList;
 import com.jme3.util.clone.Cloner;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The AssetLinkNode does not store its children when exported to file.

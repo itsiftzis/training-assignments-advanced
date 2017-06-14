@@ -31,17 +31,18 @@
  */
 package com.jme3.light;
 
-import com.jme3.bounding.BoundingSphere;
-import com.jme3.post.SceneProcessor;
-import com.jme3.renderer.RenderManager;
-import com.jme3.renderer.ViewPort;
-import com.jme3.renderer.queue.RenderQueue;
-import com.jme3.scene.Spatial;
-import com.jme3.texture.FrameBuffer;
-import com.jme3.util.TempVars;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+ import com.jme3.bounding.BoundingSphere;
+ import com.jme3.post.SceneProcessor;
+ import com.jme3.renderer.RenderManager;
+ import com.jme3.renderer.ViewPort;
+ import com.jme3.renderer.queue.RenderQueue;
+ import com.jme3.scene.Spatial;
+ import com.jme3.texture.FrameBuffer;
+ import com.jme3.util.TempVars;
+
+ import java.util.ArrayList;
+ import java.util.Collections;
+ import java.util.List;
 
 /**
  * this processor allows to blend several light probes maps together according to a Point of Interest.

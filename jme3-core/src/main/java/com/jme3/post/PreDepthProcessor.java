@@ -34,6 +34,7 @@ package com.jme3.post;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState;
+import com.jme3.material.RenderStateImpl;
 import com.jme3.material.RenderState.FaceCullMode;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
@@ -58,7 +59,7 @@ public class PreDepthProcessor implements SceneProcessor {
         preDepth.getAdditionalRenderState().setPolyOffset(0, 0);
         preDepth.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
 
-        forcedRS = new RenderState();
+        forcedRS = new RenderStateImpl();
         forcedRS.setDepthTest(true);
         forcedRS.setDepthWrite(false);
     }

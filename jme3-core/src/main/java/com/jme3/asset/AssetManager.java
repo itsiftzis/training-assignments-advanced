@@ -31,11 +31,6 @@
  */
 package com.jme3.asset;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.EnumSet;
-import java.util.List;
-
 import com.jme3.audio.AudioData;
 import com.jme3.audio.AudioKey;
 import com.jme3.font.BitmapFont;
@@ -45,6 +40,11 @@ import com.jme3.renderer.Caps;
 import com.jme3.scene.Spatial;
 import com.jme3.shader.ShaderGenerator;
 import com.jme3.texture.Texture;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.EnumSet;
+import java.util.List;
 
 /**
  * <code>AssetManager</code> provides an interface for managing the data assets

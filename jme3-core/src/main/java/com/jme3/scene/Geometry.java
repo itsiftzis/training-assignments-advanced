@@ -43,9 +43,10 @@ import com.jme3.material.Material;
 import com.jme3.math.Matrix4f;
 import com.jme3.renderer.Camera;
 import com.jme3.scene.VertexBuffer.Type;
+import com.jme3.util.TempVars;
 import com.jme3.util.clone.Cloner;
 import com.jme3.util.clone.IdentityCloneFunction;
-import com.jme3.util.TempVars;
+
 import java.io.IOException;
 import java.util.Queue;
 import java.util.logging.Level;

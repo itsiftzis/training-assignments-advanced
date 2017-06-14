@@ -11,6 +11,7 @@ import com.jme3.shader.DefineList;
 import com.jme3.shader.Shader;
 import com.jme3.shader.plugins.GLSLLoader;
 import com.jme3.system.JmeSystem;
+
 import java.util.EnumSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;

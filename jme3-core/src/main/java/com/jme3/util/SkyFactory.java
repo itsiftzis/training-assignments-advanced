@@ -44,8 +44,8 @@ import com.jme3.texture.Image;
 import com.jme3.texture.Image.Format;
 import com.jme3.texture.Texture;
 import com.jme3.texture.TextureCubeMap;
+
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 
 /**
  * <code>SkyFactory</code> is used to create jME {@link Spatial}s that can

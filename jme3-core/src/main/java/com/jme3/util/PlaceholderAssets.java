@@ -42,6 +42,7 @@ import com.jme3.texture.Image;
 import com.jme3.texture.Image.Format;
 import com.jme3.texture.Texture;
 import com.jme3.texture.image.ColorSpace;
+
 import java.nio.ByteBuffer;
 
 public class PlaceholderAssets {

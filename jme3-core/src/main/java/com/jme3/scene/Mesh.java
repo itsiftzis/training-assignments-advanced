@@ -36,9 +36,13 @@ import com.jme3.bounding.BoundingVolume;
 import com.jme3.collision.Collidable;
 import com.jme3.collision.CollisionResults;
 import com.jme3.collision.bih.BIHTree;
-import com.jme3.export.*;
+import com.jme3.export.InputCapsule;
+import com.jme3.export.JmeExporter;
+import com.jme3.export.JmeImporter;
+import com.jme3.export.OutputCapsule;
+import com.jme3.export.Savable;
 import com.jme3.material.Material;
-import com.jme3.material.RenderState;
+import com.jme3.material.RenderStateImpl;
 import com.jme3.math.Matrix4f;
 import com.jme3.math.Triangle;
 import com.jme3.math.Vector2f;
@@ -46,7 +50,11 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
-import com.jme3.scene.mesh.*;
+import com.jme3.scene.mesh.IndexBuffer;
+import com.jme3.scene.mesh.IndexIntBuffer;
+import com.jme3.scene.mesh.IndexShortBuffer;
+import com.jme3.scene.mesh.VirtualIndexBuffer;
+import com.jme3.scene.mesh.WrappedIndexBuffer;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.IntMap;
@@ -54,8 +62,14 @@ import com.jme3.util.IntMap.Entry;
 import com.jme3.util.SafeArrayList;
 import com.jme3.util.clone.Cloner;
 import com.jme3.util.clone.JmeCloneable;
+
 import java.io.IOException;
-import java.nio.*;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.nio.ShortBuffer;
 import java.util.ArrayList;
 
 /**
@@ -66,10 +80,10 @@ import java.util.ArrayList;
  * <ul>
  * <li>Points - Every vertex represents a single point in space,
  * the size of each point is specified via {@link Mesh#setPointSize(float) }.
- * Points can also be used for {@link RenderState#setPointSprite(boolean) point
+ * Points can also be used for {@link RenderStateImpl#setPointSprite(boolean) point
  * sprite} mode.</li>
  * <li>Lines - 2 vertices represent a line segment, with the width specified
- * via {@link Material#getAdditionalRenderState()} and {@link RenderState#setLineWidth(float)}.</li>
+ * via {@link Material#getAdditionalRenderState()} and {@link RenderStateImpl#setLineWidth(float)}.</li>
  * <li>Triangles - 3 vertices represent a solid triangle primitive. </li>
  * </ul>
  *
@@ -90,7 +104,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
 
         /**
          * A primitive is a line segment. Every two vertices specify
-         * a single line. {@link Material#getAdditionalRenderState()} and {@link RenderState#setLineWidth(float)} can be used
+         * a single line. {@link Material#getAdditionalRenderState()} and {@link RenderStateImpl#setLineWidth(float)} can be used
          * to set the width of the lines.
          */
         Lines(true),
@@ -98,7 +112,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
         /**
          * A primitive is a line segment. The first two vertices specify
          * a single line, while subsequent vertices are combined with the
-         * previous vertex to make a line. {@link Material#getAdditionalRenderState()} and {@link RenderState#setLineWidth(float)} can
+         * previous vertex to make a line. {@link Material#getAdditionalRenderState()} and {@link RenderStateImpl#setLineWidth(float)} can
          * be used to set the width of the lines.
          */
         LineStrip(false),
@@ -106,7 +120,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
         /**
          * Identical to {@link #LineStrip} except that at the end
          * the last vertex is connected with the first to form a line.
-         * {@link Material#getAdditionalRenderState()} and {@link RenderState#setLineWidth(float)} can be used
+         * {@link Material#getAdditionalRenderState()} and {@link RenderStateImpl#setLineWidth(float)} can be used
          * to set the width of the lines.
          */
         LineLoop(false),
@@ -616,7 +630,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
      * Returns the line width for line meshes.
      *
      * @return the line width
-     * @deprecated use {@link Material#getAdditionalRenderState()} and {@link RenderState#getLineWidth()}
+     * @deprecated use {@link Material#getAdditionalRenderState()} and {@link RenderStateImpl#getLineWidth()}
      */
     @Deprecated
     public float getLineWidth() {
@@ -629,7 +643,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
      * the default value is 1.0.
      *
      * @param lineWidth The line width
-     * @deprecated use {@link Material#getAdditionalRenderState()} and {@link RenderState#setLineWidth(float)}
+     * @deprecated use {@link Material#getAdditionalRenderState()} and {@link RenderStateImpl#setLineWidth(float)}
      */
     @Deprecated
     public void setLineWidth(float lineWidth) {

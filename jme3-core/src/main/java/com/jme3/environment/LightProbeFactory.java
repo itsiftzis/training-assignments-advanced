@@ -31,16 +31,17 @@
  */
 package com.jme3.environment;
 
-import com.jme3.light.LightProbe;
+import com.jme3.app.Application;
+import com.jme3.environment.generation.IrradianceMapGenerator;
+import com.jme3.environment.generation.JobProgressAdapter;
 import com.jme3.environment.generation.JobProgressListener;
 import com.jme3.environment.generation.PrefilteredEnvMapFaceGenerator;
-import com.jme3.environment.generation.IrradianceMapGenerator;
 import com.jme3.environment.util.EnvMapUtils;
-import com.jme3.environment.generation.JobProgressAdapter;
-import com.jme3.app.Application;
+import com.jme3.light.LightProbe;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.TextureCubeMap;
+
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 /**

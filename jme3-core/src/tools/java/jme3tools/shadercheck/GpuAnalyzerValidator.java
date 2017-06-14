@@ -2,6 +2,7 @@ package jme3tools.shadercheck;
 
 import com.jme3.shader.Shader;
 import com.jme3.shader.Shader.ShaderSource;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

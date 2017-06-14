@@ -31,13 +31,13 @@
  */
 package com.jme3.util;
 
-import java.lang.management.ManagementFactory;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.management.JMException;
 import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
+import java.lang.management.ManagementFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * See thread http://jmonkeyengine.org/forum/topic/monitor-direct-memory-usage-in-your-app/#post-205999

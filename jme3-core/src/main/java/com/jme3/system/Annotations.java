@@ -32,7 +32,12 @@
 package com.jme3.system;
 
 import checkers.quals.TypeQualifier;
-import java.lang.annotation.*;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * This class contains the Annotation definitions for jME3. Mostly these are used

@@ -7,8 +7,10 @@ package com.jme3.util.mikktspace;
 
 import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.*;
-import com.jme3.util.*;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
+import com.jme3.util.TangentUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

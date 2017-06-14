@@ -31,9 +31,6 @@
  */
 package com.jme3.scene.debug;
 
-import java.nio.FloatBuffer;
-import java.util.Map;
-
 import com.jme3.animation.Bone;
 import com.jme3.animation.Skeleton;
 import com.jme3.math.Vector3f;
@@ -43,6 +40,9 @@ import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
 import com.jme3.util.BufferUtilsCreator;
+
+import java.nio.FloatBuffer;
+import java.util.Map;
 
 /**
  * A class that displays a dotted line between a bone tail and its childrens' heads.

@@ -31,9 +31,14 @@
  */
 package com.jme3.font;
 
-import com.jme3.export.*;
+import com.jme3.export.InputCapsule;
+import com.jme3.export.JmeExporter;
+import com.jme3.export.JmeImporter;
+import com.jme3.export.OutputCapsule;
+import com.jme3.export.Savable;
 import com.jme3.util.IntMap;
 import com.jme3.util.IntMap.Entry;
+
 import java.io.IOException;
 
 public class BitmapCharacterSet implements Savable {

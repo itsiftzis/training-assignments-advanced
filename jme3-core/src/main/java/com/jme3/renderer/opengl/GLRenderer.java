@@ -31,20 +31,6 @@
  */
 package com.jme3.renderer.opengl;
 
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.nio.ShortBuffer;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.jme3.material.RenderState;
 import com.jme3.material.RenderState.BlendFunc;
 import com.jme3.material.RenderState.StencilOperation;
@@ -85,6 +71,20 @@ import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.ListMap;
 import com.jme3.util.MipMapGenerator;
 import com.jme3.util.NativeObjectManager;
+
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.nio.ShortBuffer;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class GLRenderer implements Renderer {
 

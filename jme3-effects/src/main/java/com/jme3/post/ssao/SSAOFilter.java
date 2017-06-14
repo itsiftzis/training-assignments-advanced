@@ -40,7 +40,6 @@ import com.jme3.material.Material;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.post.Filter;
-import com.jme3.post.Filter.Pass;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.Renderer;
 import com.jme3.renderer.ViewPort;
@@ -48,6 +47,7 @@ import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.shader.VarType;
 import com.jme3.texture.Image.Format;
 import com.jme3.texture.Texture;
+
 import java.io.IOException;
 import java.util.ArrayList;
 

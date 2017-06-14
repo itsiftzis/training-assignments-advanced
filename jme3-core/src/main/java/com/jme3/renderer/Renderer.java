@@ -32,6 +32,7 @@
 package com.jme3.renderer;
 
 import com.jme3.material.RenderState;
+import com.jme3.material.RenderStateImpl;
 import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer;
@@ -42,6 +43,7 @@ import com.jme3.texture.FrameBuffer;
 import com.jme3.texture.Image;
 import com.jme3.texture.Texture;
 import com.jme3.util.NativeObject;
+
 import java.nio.ByteBuffer;
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -107,7 +109,7 @@ public interface Renderer {
     public void setBackgroundColor(ColorRGBA color);
 
     /**
-     * Applies the given {@link RenderState}, making the necessary
+     * Applies the given {@link RenderStateImpl}, making the necessary
      * GL calls so that the state is applied.
      */
     public void applyRenderState(RenderState state);

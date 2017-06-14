@@ -38,6 +38,7 @@ import com.jme3.light.LightList;
 import com.jme3.light.PointLight;
 import com.jme3.light.SpotLight;
 import com.jme3.material.RenderState;
+import com.jme3.material.RenderStateImpl;
 import com.jme3.material.RenderState.BlendMode;
 import com.jme3.material.TechniqueDef;
 import com.jme3.math.ColorRGBA;
@@ -52,13 +53,14 @@ import com.jme3.shader.Shader;
 import com.jme3.shader.Uniform;
 import com.jme3.shader.VarType;
 import com.jme3.util.TempVars;
+
 import java.util.EnumSet;
 
 public final class SinglePassLightingLogic extends DefaultTechniqueDefLogic {
 
     private static final String DEFINE_SINGLE_PASS_LIGHTING = "SINGLE_PASS_LIGHTING";
     private static final String DEFINE_NB_LIGHTS = "NB_LIGHTS";
-    private static final RenderState ADDITIVE_LIGHT = new RenderState();
+    private static final RenderState ADDITIVE_LIGHT = new RenderStateImpl();
 
     private final ColorRGBA ambientLightColor = new ColorRGBA(0, 0, 0, 1);
 

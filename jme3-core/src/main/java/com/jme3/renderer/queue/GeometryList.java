@@ -31,12 +31,12 @@
  */
 package com.jme3.renderer.queue;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 import com.jme3.renderer.Camera;
 import com.jme3.scene.Geometry;
 import com.jme3.util.ListSort;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * This class is a special purpose list of {@link Geometry} objects for render

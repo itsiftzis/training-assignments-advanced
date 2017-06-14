@@ -32,6 +32,7 @@
 package com.jme3.font;
 
 import com.jme3.math.ColorRGBA;
+
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;

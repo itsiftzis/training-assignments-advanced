@@ -33,13 +33,28 @@ package com.jme3.material.logic;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.bounding.BoundingSphere;
-import com.jme3.light.*;
-import com.jme3.material.*;
+import com.jme3.light.AmbientLight;
+import com.jme3.light.DirectionalLight;
+import com.jme3.light.Light;
+import com.jme3.light.LightList;
+import com.jme3.light.LightProbe;
+import com.jme3.light.PointLight;
+import com.jme3.light.SpotLight;
+import com.jme3.material.RenderState;
+import com.jme3.material.RenderStateImpl;
 import com.jme3.material.RenderState.BlendMode;
-import com.jme3.math.*;
-import com.jme3.renderer.*;
+import com.jme3.material.TechniqueDef;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
+import com.jme3.math.Vector4f;
+import com.jme3.renderer.Caps;
+import com.jme3.renderer.RenderManager;
+import com.jme3.renderer.Renderer;
 import com.jme3.scene.Geometry;
-import com.jme3.shader.*;
+import com.jme3.shader.DefineList;
+import com.jme3.shader.Shader;
+import com.jme3.shader.Uniform;
+import com.jme3.shader.VarType;
 import com.jme3.util.TempVars;
 
 import java.util.EnumSet;
@@ -49,7 +64,7 @@ public final class SinglePassAndImageBasedLightingLogic extends DefaultTechnique
     private static final String DEFINE_SINGLE_PASS_LIGHTING = "SINGLE_PASS_LIGHTING";
     private static final String DEFINE_NB_LIGHTS = "NB_LIGHTS";
     private static final String DEFINE_INDIRECT_LIGHTING = "INDIRECT_LIGHTING";
-    private static final RenderState ADDITIVE_LIGHT = new RenderState();
+    private static final RenderState ADDITIVE_LIGHT = new RenderStateImpl();
 
     private final ColorRGBA ambientLightColor = new ColorRGBA(0, 0, 0, 1);
     private LightProbe lightProbe = null;

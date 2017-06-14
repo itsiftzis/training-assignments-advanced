@@ -54,9 +54,11 @@ import com.jme3.scene.mesh.IndexBuffer;
 import com.jme3.scene.mesh.VirtualIndexBuffer;
 import com.jme3.scene.mesh.WrappedIndexBuffer;
 import com.jme3.util.TempVars;
+
 import java.io.IOException;
-import static java.lang.Math.max;
 import java.nio.FloatBuffer;
+
+import static java.lang.Math.max;
 
 public class BIHTree implements CollisionData {
 

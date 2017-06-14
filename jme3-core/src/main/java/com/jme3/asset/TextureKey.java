@@ -31,7 +31,6 @@
  */
 package com.jme3.asset;
 
-import com.jme3.texture.Texture.Type;
 import com.jme3.asset.cache.AssetCache;
 import com.jme3.asset.cache.WeakRefCloneAssetCache;
 import com.jme3.export.InputCapsule;
@@ -40,7 +39,9 @@ import com.jme3.export.JmeImporter;
 import com.jme3.export.OutputCapsule;
 import com.jme3.texture.Image;
 import com.jme3.texture.Texture;
+import com.jme3.texture.Texture.Type;
 import com.jme3.texture.TextureProcessor;
+
 import java.io.IOException;
 
 /**

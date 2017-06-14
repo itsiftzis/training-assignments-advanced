@@ -35,11 +35,14 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.*;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Mesh;
+import com.jme3.scene.Node;
+import com.jme3.scene.SceneGraphVisitor;
+import com.jme3.scene.Spatial;
+import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.mesh.IndexBuffer;
-
-import static com.jme3.util.BufferUtils.*;
 
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
@@ -57,6 +60,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static com.jme3.util.BufferUtils.destroyDirectBuffer;
+import static com.jme3.util.BufferUtils.populateFromBuffer;
+import static com.jme3.util.BufferUtils.setInBuffer;
 
 /**
  * 

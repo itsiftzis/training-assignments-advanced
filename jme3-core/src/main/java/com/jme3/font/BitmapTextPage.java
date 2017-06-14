@@ -39,10 +39,10 @@ import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.texture.Texture2D;
 import com.jme3.util.BufferUtils;
 import com.jme3.util.clone.Cloner;
+
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
-import java.util.LinkedList;
 import java.util.LinkedList;
 
 /**

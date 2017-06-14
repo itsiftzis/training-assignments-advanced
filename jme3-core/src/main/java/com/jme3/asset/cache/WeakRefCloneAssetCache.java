@@ -33,6 +33,7 @@ package com.jme3.asset.cache;
 
 import com.jme3.asset.AssetKey;
 import com.jme3.asset.CloneableSmartAsset;
+
 import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;

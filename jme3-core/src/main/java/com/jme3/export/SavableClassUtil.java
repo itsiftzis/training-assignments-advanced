@@ -32,8 +32,14 @@
 package com.jme3.export;
 
 import com.jme3.animation.Animation;
-import com.jme3.effect.shapes.*;
+import com.jme3.effect.shapes.EmitterBoxShape;
+import com.jme3.effect.shapes.EmitterMeshConvexHullShape;
+import com.jme3.effect.shapes.EmitterMeshFaceShape;
+import com.jme3.effect.shapes.EmitterMeshVertexShape;
+import com.jme3.effect.shapes.EmitterPointShape;
+import com.jme3.effect.shapes.EmitterSphereShape;
 import com.jme3.material.MatParamTexture;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;

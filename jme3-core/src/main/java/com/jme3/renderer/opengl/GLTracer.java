@@ -32,6 +32,7 @@
 package com.jme3.renderer.opengl;
 
 import com.jme3.util.IntMap;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

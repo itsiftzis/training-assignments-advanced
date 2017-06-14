@@ -31,14 +31,29 @@
  */
 package com.jme3.material.plugins;
 
-import com.jme3.material.logic.*;
-import com.jme3.asset.*;
-import com.jme3.material.*;
+import com.jme3.asset.AssetInfo;
+import com.jme3.asset.AssetKey;
+import com.jme3.asset.AssetLoadException;
+import com.jme3.asset.AssetLoader;
+import com.jme3.asset.AssetManager;
+import com.jme3.asset.AssetNotFoundException;
+import com.jme3.asset.MaterialKey;
+import com.jme3.asset.TextureKey;
+import com.jme3.material.MatParam;
+import com.jme3.material.Material;
+import com.jme3.material.MaterialDef;
+import com.jme3.material.RenderState;
+import com.jme3.material.RenderStateImpl;
 import com.jme3.material.RenderState.BlendEquation;
 import com.jme3.material.RenderState.BlendMode;
 import com.jme3.material.RenderState.FaceCullMode;
+import com.jme3.material.TechniqueDef;
 import com.jme3.material.TechniqueDef.LightMode;
 import com.jme3.material.TechniqueDef.ShadowMode;
+import com.jme3.material.logic.DefaultTechniqueDefLogic;
+import com.jme3.material.logic.MultiPassLightingLogic;
+import com.jme3.material.logic.SinglePassAndImageBasedLightingLogic;
+import com.jme3.material.logic.SinglePassLightingLogic;
 import com.jme3.material.logic.StaticPassLightingLogic;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector2f;
@@ -494,7 +509,7 @@ public class J3MLoader implements AssetLoader {
     }
 
     private void readRenderState(List<Statement> renderStates) throws IOException{
-        renderState = new RenderState();
+        renderState = new RenderStateImpl();
         for (Statement statement : renderStates){
             readRenderStateStatement(statement);
         }
@@ -503,7 +518,7 @@ public class J3MLoader implements AssetLoader {
     }
 
     private void readForcedRenderState(List<Statement> renderStates) throws IOException{
-        renderState = new RenderState();
+        renderState = new RenderStateImpl();
         for (Statement statement : renderStates){
             readRenderStateStatement(statement);
         }

@@ -32,6 +32,7 @@
 package com.jme3.collision.bih;
 
 import com.jme3.math.Vector3f;
+
 import java.util.Comparator;
 
 public class TriangleAxisComparator implements Comparator<BIHTriangle> {

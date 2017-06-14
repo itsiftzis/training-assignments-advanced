@@ -34,6 +34,7 @@ package com.jme3.renderer.opengl;
 import com.jme3.renderer.Caps;
 import com.jme3.texture.Image;
 import com.jme3.texture.Image.Format;
+
 import java.util.EnumSet;
 
 /**

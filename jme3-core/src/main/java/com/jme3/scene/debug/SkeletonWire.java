@@ -31,10 +31,6 @@
  */
 package com.jme3.scene.debug;
 
-import java.nio.FloatBuffer;
-import java.nio.ShortBuffer;
-import java.util.Map;
-
 import com.jme3.animation.Bone;
 import com.jme3.animation.Skeleton;
 import com.jme3.math.Vector3f;
@@ -44,6 +40,10 @@ import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
 import com.jme3.util.BufferUtilsCreator;
+
+import java.nio.FloatBuffer;
+import java.nio.ShortBuffer;
+import java.util.Map;
 
 /**
  * The class that displays either wires between the bones' heads if no length data is supplied and

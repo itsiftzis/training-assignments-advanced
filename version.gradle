@@ -31,8 +31,10 @@
  * NBM UC Suffix: stable/3.1/plugins
  */
 
-import java.text.SimpleDateFormat
+
 import org.ajoberstar.grgit.*
+
+import java.text.SimpleDateFormat
 
 buildscript {
     repositories {

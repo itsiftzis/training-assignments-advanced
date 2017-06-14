@@ -32,6 +32,7 @@
 package com.jme3.opencl;
 
 import com.jme3.system.AppSettings;
+
 import java.util.List;
 
 /**
