@@ -51,6 +51,7 @@ import java.util.ArrayList;
 import static com.jme3.math.FastMath.*;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.TempVars;
 
 /**
@@ -608,7 +609,7 @@ public class EnvMapUtils {
         }
 
         for (int i = 0; i < 6; i++) {
-            ByteBuffer buf = BufferUtils.createByteBuffer(targetMapSize * targetMapSize * irrCubeMap.getImage().getFormat().getBitsPerPixel()/8);
+            ByteBuffer buf = BufferUtilsCreator.createByteBuffer(targetMapSize * targetMapSize * irrCubeMap.getImage().getFormat().getBitsPerPixel()/8);
             irrCubeMap.getImage().setData(i, buf);
         }
 

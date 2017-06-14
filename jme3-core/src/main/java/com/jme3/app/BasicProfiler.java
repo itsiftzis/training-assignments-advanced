@@ -39,7 +39,8 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.renderer.queue.RenderQueue.Bucket;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer.Type;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.FloatBuffer;
 
 
@@ -132,9 +133,9 @@ public class BasicProfiler implements AppProfiler {
             mesh.setMode(Mesh.Mode.Lines);
         }
         
-        mesh.setBuffer(Type.Position, 3, BufferUtils.createFloatBuffer(size * 4 * 3));
+        mesh.setBuffer(Type.Position, 3, BufferUtilsCreator.createFloatBuffer(size * 4 * 3));
         
-        FloatBuffer cb = BufferUtils.createFloatBuffer(size * 4 * 4);
+        FloatBuffer cb = BufferUtilsCreator.createFloatBuffer(size * 4 * 4);
         for( int i = 0; i < size; i++ ) {
             // For each index we add 4 colors, one for each line
             // endpoint for two layers.

@@ -34,12 +34,12 @@ package com.jme3.scene.debug;
 import com.jme3.bounding.BoundingSphere;
 import com.jme3.math.FastMath;
 import com.jme3.scene.Mesh;
-import com.jme3.scene.Mesh.Mode;
 import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
@@ -54,7 +54,7 @@ public class WireSphere extends Mesh {
 
     public WireSphere(float radius) {
         updatePositions(radius);
-        ShortBuffer ib = BufferUtils.createShortBuffer(samples * 2 * 2 + zSamples * samples * 2 /*+ 3 * 2*/);
+        ShortBuffer ib = BufferUtilsCreator.createShortBuffer(samples * 2 * 2 + zSamples * samples * 2 /*+ 3 * 2*/);
         setBuffer(Type.Index, 2, ib);
 
 //        ib.put(new byte[]{
@@ -85,7 +85,7 @@ public class WireSphere extends Mesh {
 
         if (pvb == null) {
             pvb = new VertexBuffer(Type.Position);
-            pb = BufferUtils.createVector3Buffer(samples * 2 + samples * zSamples /*+ 6 * 3*/);
+            pb = BufferUtilsCreator.createVector3Buffer(samples * 2 + samples * zSamples /*+ 6 * 3*/);
             pvb.setupData(Usage.Dynamic, 3, Format.Float, pb);
             setBuffer(pvb);
         } else {

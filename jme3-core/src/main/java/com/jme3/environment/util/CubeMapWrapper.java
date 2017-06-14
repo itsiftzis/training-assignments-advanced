@@ -31,7 +31,6 @@
  */
 package com.jme3.environment.util;
 
-import com.jme3.environment.util.EnvMapUtils;
 import com.jme3.math.ColorRGBA;
 import static com.jme3.math.FastMath.pow;
 import com.jme3.math.Vector2f;
@@ -40,7 +39,7 @@ import com.jme3.texture.Image;
 import com.jme3.texture.TextureCubeMap;
 import com.jme3.texture.image.DefaultImageRaster;
 import com.jme3.texture.image.MipMapImageRaster;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 
 /**
  * Wraps a Cube map and allows to read from or write pixels into it.
@@ -236,7 +235,7 @@ public class CubeMapWrapper {
         image.setMipMapSizes(sizes);        
         image.getData().clear();
         for (int i = 0; i < 6; i++) {
-            image.addData(BufferUtils.createByteBuffer(totalSize));
+            image.addData(BufferUtilsCreator.createByteBuffer(totalSize));
         }
         mipMapRaster = new MipMapImageRaster(image, 0);        
     }

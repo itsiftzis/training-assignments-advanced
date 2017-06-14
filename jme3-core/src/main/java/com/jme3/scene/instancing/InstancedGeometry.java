@@ -46,6 +46,7 @@ import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.TempVars;
 import com.jme3.util.clone.Cloner;
 import java.io.IOException;
@@ -194,14 +195,14 @@ public class InstancedGeometry extends Geometry {
         // Resize instance data.
         if (transformInstanceData != null) {
             BufferUtils.destroyDirectBuffer(transformInstanceData.getData());
-            transformInstanceData.updateData(BufferUtils.createFloatBuffer(geometries.length * INSTANCE_SIZE));
+            transformInstanceData.updateData(BufferUtilsCreator.createFloatBuffer(geometries.length * INSTANCE_SIZE));
         } else if (transformInstanceData == null) {
             transformInstanceData = new VertexBuffer(Type.InstanceData);
             transformInstanceData.setInstanced(true);
             transformInstanceData.setupData(Usage.Stream,
                     INSTANCE_SIZE,
                     Format.Float,
-                    BufferUtils.createFloatBuffer(geometries.length * INSTANCE_SIZE));
+                    BufferUtilsCreator.createFloatBuffer(geometries.length * INSTANCE_SIZE));
         }
     }
 

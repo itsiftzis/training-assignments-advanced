@@ -34,7 +34,6 @@ package com.jme3.util;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.texture.Image;
-import com.jme3.texture.Image.Format;
 import com.jme3.texture.image.ImageRaster;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -46,7 +45,7 @@ public class MipMapGenerator {
     
     public static Image scaleImage(Image inputImage, int outputWidth, int outputHeight) {
         int size = outputWidth * outputHeight * inputImage.getFormat().getBitsPerPixel() / 8;
-        ByteBuffer buffer = BufferUtils.createByteBuffer(size);
+        ByteBuffer buffer = BufferUtilsCreator.createByteBuffer(size);
         Image outputImage = new Image(inputImage.getFormat(), 
                                       outputWidth, 
                                       outputHeight, 
@@ -123,7 +122,7 @@ public class MipMapGenerator {
             current = scaleImage(current, width, height);
         }
 
-        ByteBuffer combinedData = BufferUtils.createByteBuffer(totalSize);
+        ByteBuffer combinedData = BufferUtilsCreator.createByteBuffer(totalSize);
         int[] mipSizes = new int[output.size()];
         for (int i = 0; i < output.size(); i++){
             ByteBuffer data = output.get(i);

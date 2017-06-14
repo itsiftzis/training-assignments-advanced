@@ -38,7 +38,8 @@ import com.jme3.math.FastMath;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer.Type;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
@@ -76,8 +77,8 @@ public class BoundingSphereDebug extends Mesh {
     private void setGeometryData() {
         setMode(Mode.Lines);
 
-        FloatBuffer posBuf = BufferUtils.createVector3Buffer((radialSamples + 1) * 3);
-        FloatBuffer colBuf = BufferUtils.createVector3Buffer((radialSamples + 1) * 4);
+        FloatBuffer posBuf = BufferUtilsCreator.createVector3Buffer((radialSamples + 1) * 3);
+        FloatBuffer colBuf = BufferUtilsCreator.createVector3Buffer((radialSamples + 1) * 4);
 
         setBuffer(Type.Position, 3, posBuf);
         setBuffer(Type.Color, 4, colBuf);
@@ -138,7 +139,7 @@ public class BoundingSphereDebug extends Mesh {
         // allocate connectivity
         int nbSegments = (radialSamples) * 3;
 
-        ShortBuffer idxBuf = BufferUtils.createShortBuffer(2 * nbSegments);
+        ShortBuffer idxBuf = BufferUtilsCreator.createShortBuffer(2 * nbSegments);
         setBuffer(Type.Index, 2, idxBuf);
 
         int idx = 0;

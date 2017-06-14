@@ -40,6 +40,8 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
@@ -115,15 +117,15 @@ public class Torus extends Mesh {
     private void setGeometryData() {
         // allocate vertices
         int vertCount = (circleSamples + 1) * (radialSamples + 1);
-        FloatBuffer fpb = BufferUtils.createVector3Buffer(vertCount);
+        FloatBuffer fpb = BufferUtilsCreator.createVector3Buffer(vertCount);
         setBuffer(Type.Position, 3, fpb);
 
         // allocate normals if requested
-        FloatBuffer fnb = BufferUtils.createVector3Buffer(vertCount);
+        FloatBuffer fnb = BufferUtilsCreator.createVector3Buffer(vertCount);
         setBuffer(Type.Normal, 3, fnb);
 
         // allocate texture coordinates
-        FloatBuffer ftb = BufferUtils.createVector2Buffer(vertCount);
+        FloatBuffer ftb = BufferUtilsCreator.createVector2Buffer(vertCount);
         setBuffer(Type.TexCoord, 2, ftb);
 
         // generate geometry
@@ -183,7 +185,7 @@ public class Torus extends Mesh {
         // allocate connectivity
         int triCount = 2 * circleSamples * radialSamples;
 
-        ShortBuffer sib = BufferUtils.createShortBuffer(3 * triCount);
+        ShortBuffer sib = BufferUtilsCreator.createShortBuffer(3 * triCount);
         setBuffer(Type.Index, 3, sib);
 
         int i;

@@ -41,6 +41,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.TempVars;
 import java.io.IOException;
 import java.nio.FloatBuffer;
@@ -147,13 +148,13 @@ public class Sphere extends Mesh {
         // allocate vertices
         vertCount = (zSamples - 2) * (radialSamples + 1) + 2;
 
-        FloatBuffer posBuf = BufferUtils.createVector3Buffer(vertCount);
+        FloatBuffer posBuf = BufferUtilsCreator.createVector3Buffer(vertCount);
 
         // allocate normals if requested
-        FloatBuffer normBuf = BufferUtils.createVector3Buffer(vertCount);
+        FloatBuffer normBuf = BufferUtilsCreator.createVector3Buffer(vertCount);
 
         // allocate texture coordinates
-        FloatBuffer texBuf = BufferUtils.createVector2Buffer(vertCount);
+        FloatBuffer texBuf = BufferUtilsCreator.createVector2Buffer(vertCount);
 
         setBuffer(Type.Position, 3, posBuf);
         setBuffer(Type.Normal, 3, normBuf);
@@ -307,7 +308,7 @@ public class Sphere extends Mesh {
     private void setIndexData() {
         // allocate connectivity
         triCount = 2 * (zSamples - 2) * radialSamples;
-        ShortBuffer idxBuf = BufferUtils.createShortBuffer(3 * triCount);
+        ShortBuffer idxBuf = BufferUtilsCreator.createShortBuffer(3 * triCount);
         setBuffer(Type.Index, 3, idxBuf);
 
         // generate connectivity

@@ -33,7 +33,8 @@ package com.jme3.texture.plugins;
 
 import com.jme3.math.FastMath;
 import com.jme3.texture.Image.Format;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -229,7 +230,7 @@ public class DXTFlipper {
         // DXT3, DXT5, LATC use 16 bytes per block
         int bpb = type == 1 || type == 5 ? 8 : 16;
 
-        ByteBuffer retImg = BufferUtils.createByteBuffer(blocksX * blocksY * bpb);
+        ByteBuffer retImg = BufferUtilsCreator.createByteBuffer(blocksX * blocksY * bpb);
         if (h == 1){
             retImg.put(img);
             retImg.rewind();

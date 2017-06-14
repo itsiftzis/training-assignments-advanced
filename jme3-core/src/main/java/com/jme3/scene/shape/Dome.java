@@ -41,6 +41,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.TempVars;
 import java.io.IOException;
 import java.nio.FloatBuffer;
@@ -198,9 +199,9 @@ public class Dome extends Mesh {
         // allocate texture coordinates
 //        getTextureCoords().set(0, new TexCoords(createVector2Buffer(getVertexCount())));
 
-        FloatBuffer vb = BufferUtils.createVector3Buffer(vertCount);
-        FloatBuffer nb = BufferUtils.createVector3Buffer(vertCount);
-        FloatBuffer tb = BufferUtils.createVector2Buffer(vertCount);
+        FloatBuffer vb = BufferUtilsCreator.createVector3Buffer(vertCount);
+        FloatBuffer nb = BufferUtilsCreator.createVector3Buffer(vertCount);
+        FloatBuffer tb = BufferUtilsCreator.createVector2Buffer(vertCount);
         setBuffer(Type.Position, 3, vb);
         setBuffer(Type.Normal, 3, nb);
         setBuffer(Type.TexCoord, 2, tb);
@@ -272,7 +273,7 @@ public class Dome extends Mesh {
 
         // allocate connectivity
         int triCount = (planes - 2) * radialSamples * 2 + radialSamples;
-        ShortBuffer ib = BufferUtils.createShortBuffer(3 * triCount);
+        ShortBuffer ib = BufferUtilsCreator.createShortBuffer(3 * triCount);
         setBuffer(Type.Index, 3, ib);
 
         // generate connectivity

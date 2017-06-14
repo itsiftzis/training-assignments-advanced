@@ -32,7 +32,7 @@
 package com.jme3.math;
 
 import com.jme3.export.*;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.TempVars;
 import java.io.IOException;
 import java.nio.FloatBuffer;
@@ -708,7 +708,7 @@ public final class Matrix4f implements Savable, Cloneable, java.io.Serializable 
      *         convenience.
      */
     public FloatBuffer toFloatBuffer(boolean columnMajor) {
-        FloatBuffer fb = BufferUtils.createFloatBuffer(16);
+        FloatBuffer fb = BufferUtilsCreator.createFloatBuffer(16);
         fillFloatBuffer(fb, columnMajor);
         fb.rewind();
         return fb;

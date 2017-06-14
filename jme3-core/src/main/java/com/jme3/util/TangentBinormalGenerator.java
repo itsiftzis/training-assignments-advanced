@@ -36,9 +36,7 @@ import com.jme3.math.FastMath;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.*;
-import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Type;
-import com.jme3.scene.VertexBuffer.Usage;
 import com.jme3.scene.mesh.IndexBuffer;
 
 import static com.jme3.util.BufferUtils.*;
@@ -675,7 +673,7 @@ public class TangentBinormalGenerator {
             boolean approxTangent, boolean splitMirrored) {
         ArrayList<VertexInfo> vertexMap = linkVertices(mesh,splitMirrored);
 
-        FloatBuffer tangents = BufferUtils.createFloatBuffer(vertices.size() * 4);
+        FloatBuffer tangents = BufferUtilsCreator.createFloatBuffer(vertices.size() * 4);
 
         ColorRGBA[] cols = null;
         if (debug) {
@@ -859,7 +857,7 @@ public class TangentBinormalGenerator {
     }    
     
     private static void writeColorBuffer(List<VertexData> vertices, ColorRGBA[] cols, Mesh mesh) {
-        FloatBuffer colors = BufferUtils.createFloatBuffer(vertices.size() * 4);
+        FloatBuffer colors = BufferUtilsCreator.createFloatBuffer(vertices.size() * 4);
         colors.rewind();
         for (ColorRGBA color : cols) {
             colors.put(color.r);
@@ -901,8 +899,8 @@ public class TangentBinormalGenerator {
         Vector3f origin = new Vector3f();
         Vector3f point = new Vector3f();
         
-        FloatBuffer lineVertex = BufferUtils.createFloatBuffer(vertexBuffer.limit() * 2);
-        FloatBuffer lineColor = BufferUtils.createFloatBuffer(vertexBuffer.limit() / 3 * 4 * 2);
+        FloatBuffer lineVertex = BufferUtilsCreator.createFloatBuffer(vertexBuffer.limit() * 2);
+        FloatBuffer lineColor = BufferUtilsCreator.createFloatBuffer(vertexBuffer.limit() / 3 * 4 * 2);
         
         for (int i = 0; i < vertexBuffer.limit() / 3; i++) {
             populateFromBuffer(origin, vertexBuffer, i);
@@ -950,9 +948,9 @@ public class TangentBinormalGenerator {
         Vector3f tangent = new Vector3f();
         Vector3f normal = new Vector3f();
         
-        IntBuffer lineIndex = BufferUtils.createIntBuffer(vertexBuffer.limit() / 3 * 6);
-        FloatBuffer lineVertex = BufferUtils.createFloatBuffer(vertexBuffer.limit() * 4);
-        FloatBuffer lineColor = BufferUtils.createFloatBuffer(vertexBuffer.limit() / 3 * 4 * 4);
+        IntBuffer lineIndex = BufferUtilsCreator.createIntBuffer(vertexBuffer.limit() / 3 * 6);
+        FloatBuffer lineVertex = BufferUtilsCreator.createFloatBuffer(vertexBuffer.limit() * 4);
+        FloatBuffer lineColor = BufferUtilsCreator.createFloatBuffer(vertexBuffer.limit() / 3 * 4 * 4);
         
         boolean hasParity = mesh.getBuffer(Type.Tangent).getNumComponents() == 4;
         float tangentW = 1;

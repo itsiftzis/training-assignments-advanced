@@ -32,7 +32,8 @@
 package com.jme3.texture.plugins;
 
 import com.jme3.texture.Image;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.ByteBuffer;
 
 /**
@@ -58,7 +59,7 @@ public class ImageFlipper {
         int scanline = w * bpp;
 
         ByteBuffer data = img.getData(index);
-        ByteBuffer temp = BufferUtils.createByteBuffer(scanline);
+        ByteBuffer temp = BufferUtilsCreator.createByteBuffer(scanline);
         
         data.rewind();
         for (int y = 0; y < halfH; y++){

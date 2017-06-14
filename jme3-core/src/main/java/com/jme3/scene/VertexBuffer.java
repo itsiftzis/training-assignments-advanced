@@ -35,6 +35,7 @@ import com.jme3.export.*;
 import com.jme3.math.FastMath;
 import com.jme3.renderer.Renderer;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.NativeObject;
 import java.io.IOException;
 import java.nio.*;
@@ -727,7 +728,7 @@ public class VertexBuffer extends NativeObject implements Savable, Cloneable {
         format = Format.Half;
         this.componentsLength = components * format.getComponentSize();
         
-        ByteBuffer halfData = BufferUtils.createByteBuffer(componentsLength * numElements);
+        ByteBuffer halfData = BufferUtilsCreator.createByteBuffer(componentsLength * numElements);
         halfData.rewind();
 
         FloatBuffer floatData = (FloatBuffer) data;
@@ -759,7 +760,7 @@ public class VertexBuffer extends NativeObject implements Savable, Cloneable {
             case Half:
                 ByteBuffer bbuf = (ByteBuffer) data;
                 bbuf.limit(total);
-                ByteBuffer bnewBuf = BufferUtils.createByteBuffer(total);
+                ByteBuffer bnewBuf = BufferUtilsCreator.createByteBuffer(total);
                 bnewBuf.put(bbuf);
                 data = bnewBuf;
                 break;
@@ -767,7 +768,7 @@ public class VertexBuffer extends NativeObject implements Savable, Cloneable {
             case UnsignedShort:
                 ShortBuffer sbuf = (ShortBuffer) data;
                 sbuf.limit(total);
-                ShortBuffer snewBuf = BufferUtils.createShortBuffer(total);
+                ShortBuffer snewBuf = BufferUtilsCreator.createShortBuffer(total);
                 snewBuf.put(sbuf);
                 data = snewBuf;
                 break;
@@ -775,14 +776,14 @@ public class VertexBuffer extends NativeObject implements Savable, Cloneable {
             case UnsignedInt:
                 IntBuffer ibuf = (IntBuffer) data;
                 ibuf.limit(total);
-                IntBuffer inewBuf = BufferUtils.createIntBuffer(total);
+                IntBuffer inewBuf = BufferUtilsCreator.createIntBuffer(total);
                 inewBuf.put(ibuf);
                 data = inewBuf;
                 break;
             case Float:
                 FloatBuffer fbuf = (FloatBuffer) data;
                 fbuf.limit(total);
-                FloatBuffer fnewBuf = BufferUtils.createFloatBuffer(total);
+                FloatBuffer fnewBuf = BufferUtilsCreator.createFloatBuffer(total);
                 fnewBuf.put(fbuf);
                 data = fnewBuf;
                 break;
@@ -986,19 +987,19 @@ public class VertexBuffer extends NativeObject implements Savable, Cloneable {
         switch (format){
             case Byte:
             case UnsignedByte:
-                return BufferUtils.createByteBuffer(total);
+                return BufferUtilsCreator.createByteBuffer(total);
             case Half:
-                return BufferUtils.createByteBuffer(total * 2);
+                return BufferUtilsCreator.createByteBuffer(total * 2);
             case Short:
             case UnsignedShort:
-                return BufferUtils.createShortBuffer(total);
+                return BufferUtilsCreator.createShortBuffer(total);
             case Int:
             case UnsignedInt:
-                return BufferUtils.createIntBuffer(total);
+                return BufferUtilsCreator.createIntBuffer(total);
             case Float:
-                return BufferUtils.createFloatBuffer(total);
+                return BufferUtilsCreator.createFloatBuffer(total);
             case Double:
-                return BufferUtils.createDoubleBuffer(total);
+                return BufferUtilsCreator.createDoubleBuffer(total);
             default:
                 throw new UnsupportedOperationException("Unrecoginized buffer format: "+format);
         }

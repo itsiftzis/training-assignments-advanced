@@ -11,6 +11,8 @@ import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
 import com.jme3.scene.mesh.IndexBuffer;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -526,13 +528,13 @@ public class GeometryBatchFactory {
                                 case Index:
                                 case BoneIndex:
                                 case HWBoneIndex:
-                                    b = BufferUtils.createIntBuffer(geom.getMesh().getVertexCount() * types.get(type).getNumComponents());
+                                    b = BufferUtilsCreator.createIntBuffer(geom.getMesh().getVertexCount() * types.get(type).getNumComponents());
                                     break;
                                 case InterleavedData:
-                                    b = BufferUtils.createByteBuffer(geom.getMesh().getVertexCount() * types.get(type).getNumComponents());
+                                    b = BufferUtilsCreator.createByteBuffer(geom.getMesh().getVertexCount() * types.get(type).getNumComponents());
                                     break;
                                 default:
-                                    b = BufferUtils.createFloatBuffer(geom.getMesh().getVertexCount() * types.get(type).getNumComponents());
+                                    b = BufferUtilsCreator.createFloatBuffer(geom.getMesh().getVertexCount() * types.get(type).getNumComponents());
                             }
                             vb.setupData(types.get(type).getUsage(), types.get(type).getNumComponents(), types.get(type).getFormat(), b);
                             geom.getMesh().setBuffer(vb);

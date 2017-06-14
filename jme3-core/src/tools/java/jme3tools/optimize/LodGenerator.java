@@ -52,7 +52,8 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -617,9 +618,9 @@ public class LodGenerator {
         int bufsize = indexCount == 0 ? 3 : indexCount;
         
         if (isShortBuffer) {
-            lodBuffer.setupData(VertexBuffer.Usage.Static, 3, VertexBuffer.Format.UnsignedShort, BufferUtils.createShortBuffer(bufsize));
+            lodBuffer.setupData(VertexBuffer.Usage.Static, 3, VertexBuffer.Format.UnsignedShort, BufferUtilsCreator.createShortBuffer(bufsize));
         } else {
-            lodBuffer.setupData(VertexBuffer.Usage.Static, 3, VertexBuffer.Format.UnsignedInt, BufferUtils.createIntBuffer(bufsize));
+            lodBuffer.setupData(VertexBuffer.Usage.Static, 3, VertexBuffer.Format.UnsignedInt, BufferUtilsCreator.createIntBuffer(bufsize));
         }
         
         

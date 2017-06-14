@@ -38,7 +38,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.math.Vector4f;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -227,7 +227,7 @@ public class Surface extends Mesh {
             normals[arrayIndex++] = n.z;
         }
 
-        this.setBuffer(VertexBuffer.Type.Position, 3, BufferUtils.createFloatBuffer(verticesArray));
+        this.setBuffer(VertexBuffer.Type.Position, 3, BufferUtilsCreator.createFloatBuffer(verticesArray));
         this.setBuffer(VertexBuffer.Type.Index, 3, indices);
         this.setBuffer(VertexBuffer.Type.Normal, 3, normals);
         this.updateBound();

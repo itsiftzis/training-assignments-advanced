@@ -38,7 +38,7 @@ import com.jme3.renderer.Camera;
 import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Usage;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.TempVars;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -62,7 +62,7 @@ public class ParticleTriMesh extends ParticleMesh {
 //        particlesCopy = new Particle[numParticles];
 
         // set positions
-        FloatBuffer pb = BufferUtils.createVector3Buffer(numParticles * 4);
+        FloatBuffer pb = BufferUtilsCreator.createVector3Buffer(numParticles * 4);
         // if the buffer is already set only update the data
         VertexBuffer buf = getBuffer(VertexBuffer.Type.Position);
         if (buf != null) {
@@ -74,7 +74,7 @@ public class ParticleTriMesh extends ParticleMesh {
         }
         
         // set colors
-        ByteBuffer cb = BufferUtils.createByteBuffer(numParticles * 4 * 4);
+        ByteBuffer cb = BufferUtilsCreator.createByteBuffer(numParticles * 4 * 4);
         buf = getBuffer(VertexBuffer.Type.Color);
         if (buf != null) {
             buf.updateData(cb);
@@ -86,7 +86,7 @@ public class ParticleTriMesh extends ParticleMesh {
         }
 
         // set texcoords
-        FloatBuffer tb = BufferUtils.createVector2Buffer(numParticles * 4);
+        FloatBuffer tb = BufferUtilsCreator.createVector2Buffer(numParticles * 4);
         uniqueTexCoords = false;
         for (int i = 0; i < numParticles; i++){
             tb.put(0f).put(1f);
@@ -106,7 +106,7 @@ public class ParticleTriMesh extends ParticleMesh {
         }
 
         // set indices
-        ShortBuffer ib = BufferUtils.createShortBuffer(numParticles * 6);
+        ShortBuffer ib = BufferUtilsCreator.createShortBuffer(numParticles * 6);
         for (int i = 0; i < numParticles; i++){
             int startIdx = (i * 4);
 

@@ -48,6 +48,7 @@ import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
 import com.jme3.scene.mesh.*;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.IntMap;
 import com.jme3.util.IntMap.Entry;
 import com.jme3.util.SafeArrayList;
@@ -433,7 +434,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
             if (indicesHW.getData() == null) {
                 VertexBuffer indices = getBuffer(Type.BoneIndex);
                 ByteBuffer originalIndex = (ByteBuffer) indices.getData();
-                ByteBuffer directIndex = BufferUtils.createByteBuffer(originalIndex.capacity());
+                ByteBuffer directIndex = BufferUtilsCreator.createByteBuffer(originalIndex.capacity());
                 originalIndex.clear();
                 directIndex.put(originalIndex);
                 indicesHW.setupData(Usage.Static, indices.getNumComponents(), indices.getFormat(), directIndex);
@@ -443,7 +444,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
             if (weightsHW.getData() == null) {
                 VertexBuffer weights = getBuffer(Type.BoneWeight);
                 FloatBuffer originalWeight = (FloatBuffer) weights.getData();
-                FloatBuffer directWeight = BufferUtils.createFloatBuffer(originalWeight.capacity());
+                FloatBuffer directWeight = BufferUtilsCreator.createFloatBuffer(originalWeight.capacity());
                 originalWeight.clear();
                 directWeight.put(originalWeight);
                 weightsHW.setupData(Usage.Static, weights.getNumComponents(), weights.getFormat(), directWeight);
@@ -697,7 +698,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
         }
 
         VertexBuffer allData = new VertexBuffer(Type.InterleavedData);
-        ByteBuffer dataBuf = BufferUtils.createByteBuffer(stride * getVertexCount());
+        ByteBuffer dataBuf = BufferUtilsCreator.createByteBuffer(stride * getVertexCount());
         allData.setupData(Usage.Static, 1, Format.UnsignedByte, dataBuf);
 
         // adding buffer directly so that no update counts is forced
@@ -1073,7 +1074,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
     }
 
     public void setBuffer(Type type, int components, float[] buf){
-        setBuffer(type, components, BufferUtils.createFloatBuffer(buf));
+        setBuffer(type, components, BufferUtilsCreator.createFloatBuffer(buf));
     }
 
     public void setBuffer(Type type, int components, IntBuffer buf) {
@@ -1097,7 +1098,7 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
     }
 
     public void setBuffer(Type type, int components, short[] buf){
-        setBuffer(type, components, BufferUtils.createShortBuffer(buf));
+        setBuffer(type, components, BufferUtilsCreator.createShortBuffer(buf));
     }
 
     /**
@@ -1232,9 +1233,9 @@ public class Mesh implements Savable, Cloneable, JmeCloneable {
         // convert from int index buffer to short index buffer
         IndexBuffer newIndexBuf;
         if (newNumVerts >= 65536) {
-            newIndexBuf = new IndexIntBuffer(BufferUtils.createIntBuffer(numIndices));
+            newIndexBuf = new IndexIntBuffer(BufferUtilsCreator.createIntBuffer(numIndices));
         } else {
-            newIndexBuf = new IndexShortBuffer(BufferUtils.createShortBuffer(numIndices));
+            newIndexBuf = new IndexShortBuffer(BufferUtilsCreator.createShortBuffer(numIndices));
         }
 
         for (int i = 0; i < numIndices; i++) {

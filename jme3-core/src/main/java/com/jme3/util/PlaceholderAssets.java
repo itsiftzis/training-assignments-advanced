@@ -73,7 +73,7 @@ public class PlaceholderAssets {
     
     @Deprecated
     public static Image getPlaceholderImage(){
-        ByteBuffer tempData = BufferUtils.createByteBuffer(3 * 4 * 4);
+        ByteBuffer tempData = BufferUtilsCreator.createByteBuffer(3 * 4 * 4);
         tempData.put(imageData).flip();
         return new Image(Format.RGB8, 4, 4, tempData, null, ColorSpace.Linear);
     }
@@ -106,7 +106,7 @@ public class PlaceholderAssets {
     public static AudioData getPlaceholderAudio(){
         AudioBuffer audioBuf = new AudioBuffer();
         audioBuf.setupFormat(1, 8, 44100);
-        ByteBuffer bb = BufferUtils.createByteBuffer(1);
+        ByteBuffer bb = BufferUtilsCreator.createByteBuffer(1);
         bb.put((byte)0).flip();
         audioBuf.updateData(bb);
         return audioBuf;

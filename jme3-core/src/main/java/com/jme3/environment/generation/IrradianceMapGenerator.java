@@ -38,7 +38,9 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.texture.TextureCubeMap;
 import static com.jme3.environment.util.EnvMapUtils.shBandFactor;
-import com.jme3.util.BufferUtils;
+
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.ByteBuffer;
 import java.util.concurrent.Callable;
 
@@ -136,7 +138,7 @@ public class IrradianceMapGenerator extends RunnableWithProgress {
 
         setEnd(6 + 6);
         for (int i = 0; i < 6; i++) {
-            ByteBuffer buf = BufferUtils.createByteBuffer(targetMapSize * targetMapSize * store.getImage().getFormat().getBitsPerPixel() / 8);
+            ByteBuffer buf = BufferUtilsCreator.createByteBuffer(targetMapSize * targetMapSize * store.getImage().getFormat().getBitsPerPixel() / 8);
             irrCubeMap.getImage().setData(i, buf);
             progress();
         }

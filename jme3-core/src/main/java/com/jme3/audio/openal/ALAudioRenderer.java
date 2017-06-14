@@ -34,7 +34,7 @@ package com.jme3.audio.openal;
 import com.jme3.audio.*;
 import com.jme3.audio.AudioSource.Status;
 import com.jme3.math.Vector3f;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.NativeObjectManager;
 
 import java.nio.ByteBuffer;
@@ -58,9 +58,9 @@ public class ALAudioRenderer implements AudioRenderer, Runnable {
     private static final int BUFFER_SIZE = 35280;
     private static final int STREAMING_BUFFER_COUNT = 5;
     private final static int MAX_NUM_CHANNELS = 64;
-    private IntBuffer ib = BufferUtils.createIntBuffer(1);
-    private final FloatBuffer fb = BufferUtils.createVector3Buffer(2);
-    private final ByteBuffer nativeBuf = BufferUtils.createByteBuffer(BUFFER_SIZE);
+    private IntBuffer ib = BufferUtilsCreator.createIntBuffer(1);
+    private final FloatBuffer fb = BufferUtilsCreator.createVector3Buffer(2);
+    private final ByteBuffer nativeBuf = BufferUtilsCreator.createByteBuffer(BUFFER_SIZE);
     private final byte[] arrayBuf = new byte[BUFFER_SIZE];
     private int[] channels;
     private AudioSource[] chanSrcs;
@@ -116,7 +116,7 @@ public class ALAudioRenderer implements AudioRenderer, Runnable {
             channels[i] = channelList.get(i);
         }
 
-        ib = BufferUtils.createIntBuffer(channels.length);
+        ib = BufferUtilsCreator.createIntBuffer(channels.length);
         chanSrcs = new AudioSource[channels.length];
 
         final String deviceName = alc.alcGetString(ALC.ALC_DEVICE_SPECIFIER);

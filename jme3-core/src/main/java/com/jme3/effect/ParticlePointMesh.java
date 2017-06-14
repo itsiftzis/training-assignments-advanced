@@ -36,7 +36,8 @@ import com.jme3.renderer.Camera;
 import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Usage;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
@@ -60,7 +61,7 @@ public class ParticlePointMesh extends ParticleMesh {
         this.emitter = emitter;
 
         // set positions
-        FloatBuffer pb = BufferUtils.createVector3Buffer(numParticles);
+        FloatBuffer pb = BufferUtilsCreator.createVector3Buffer(numParticles);
         
         //if the buffer is already set only update the data
         VertexBuffer buf = getBuffer(VertexBuffer.Type.Position);
@@ -73,7 +74,7 @@ public class ParticlePointMesh extends ParticleMesh {
         }
 
         // set colors
-        ByteBuffer cb = BufferUtils.createByteBuffer(numParticles * 4);
+        ByteBuffer cb = BufferUtilsCreator.createByteBuffer(numParticles * 4);
         
         buf = getBuffer(VertexBuffer.Type.Color);
         if (buf != null) {
@@ -86,7 +87,7 @@ public class ParticlePointMesh extends ParticleMesh {
         }
 
         // set sizes
-        FloatBuffer sb = BufferUtils.createFloatBuffer(numParticles);
+        FloatBuffer sb = BufferUtilsCreator.createFloatBuffer(numParticles);
         
         buf = getBuffer(VertexBuffer.Type.Size);
         if (buf != null) {
@@ -98,7 +99,7 @@ public class ParticlePointMesh extends ParticleMesh {
         }
 
         // set UV-scale
-        FloatBuffer tb = BufferUtils.createFloatBuffer(numParticles*4);
+        FloatBuffer tb = BufferUtilsCreator.createFloatBuffer(numParticles*4);
         
         buf = getBuffer(VertexBuffer.Type.TexCoord);
         if (buf != null) {

@@ -34,7 +34,7 @@ package com.jme3.export.binary;
 import com.jme3.export.InputCapsule;
 import com.jme3.export.Savable;
 import com.jme3.export.SavableClassUtil;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.IntMap;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -1270,12 +1270,12 @@ final class BinaryInputCapsule implements InputCapsule {
             return null;
 
         if (BinaryImporter.canUseFastBuffers()){
-            ByteBuffer value = BufferUtils.createByteBuffer(length * 4);
+            ByteBuffer value = BufferUtilsCreator.createByteBuffer(length * 4);
             value.put(content, index, length * 4).rewind();
             index += length * 4;
             return value.asFloatBuffer();
         }else{
-            FloatBuffer value = BufferUtils.createFloatBuffer(length);
+            FloatBuffer value = BufferUtilsCreator.createFloatBuffer(length);
             for (int x = 0; x < length; x++) {
                 value.put(readFloatForBuffer(content));
             }
@@ -1292,12 +1292,12 @@ final class BinaryInputCapsule implements InputCapsule {
             return null;
 
         if (BinaryImporter.canUseFastBuffers()){
-            ByteBuffer value = BufferUtils.createByteBuffer(length * 4);
+            ByteBuffer value = BufferUtilsCreator.createByteBuffer(length * 4);
             value.put(content, index, length * 4).rewind();
             index += length * 4;
             return value.asIntBuffer();
         }else{
-            IntBuffer value = BufferUtils.createIntBuffer(length);
+            IntBuffer value = BufferUtilsCreator.createIntBuffer(length);
             for (int x = 0; x < length; x++) {
                 value.put(readIntForBuffer(content));
             }
@@ -1314,12 +1314,12 @@ final class BinaryInputCapsule implements InputCapsule {
             return null;
 
         if (BinaryImporter.canUseFastBuffers()){
-            ByteBuffer value = BufferUtils.createByteBuffer(length);
+            ByteBuffer value = BufferUtilsCreator.createByteBuffer(length);
             value.put(content, index, length).rewind();
             index += length;
             return value;
         }else{
-            ByteBuffer value = BufferUtils.createByteBuffer(length);
+            ByteBuffer value = BufferUtilsCreator.createByteBuffer(length);
             for (int x = 0; x < length; x++) {
                 value.put(readByteForBuffer(content));
             }
@@ -1336,12 +1336,12 @@ final class BinaryInputCapsule implements InputCapsule {
             return null;
 
         if (BinaryImporter.canUseFastBuffers()){
-            ByteBuffer value = BufferUtils.createByteBuffer(length * 2);
+            ByteBuffer value = BufferUtilsCreator.createByteBuffer(length * 2);
             value.put(content, index, length * 2).rewind();
             index += length * 2;
             return value.asShortBuffer();
         }else{
-            ShortBuffer value = BufferUtils.createShortBuffer(length);
+            ShortBuffer value = BufferUtilsCreator.createShortBuffer(length);
             for (int x = 0; x < length; x++) {
                 value.put(readShortForBuffer(content));
             }

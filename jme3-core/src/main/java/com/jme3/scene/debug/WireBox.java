@@ -39,7 +39,8 @@ import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.FloatBuffer;
 
 public class WireBox extends Mesh {
@@ -78,7 +79,7 @@ public class WireBox extends Mesh {
         FloatBuffer pb;
         if (pvb == null){
             pvb = new VertexBuffer(Type.Position);
-            pb = BufferUtils.createVector3Buffer(8);
+            pb = BufferUtilsCreator.createVector3Buffer(8);
             pvb.setupData(Usage.Dynamic, 3, Format.Float, pb);
             setBuffer(pvb);
         }else{

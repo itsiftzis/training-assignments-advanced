@@ -32,7 +32,7 @@
 package com.jme3.math;
 
 import com.jme3.export.*;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.TempVars;
 import java.io.IOException;
 import java.nio.FloatBuffer;
@@ -416,7 +416,7 @@ public final class Matrix3f implements Savable, Cloneable, java.io.Serializable 
      * @return matrix data as a FloatBuffer.
      */
     public FloatBuffer toFloatBuffer() {
-        FloatBuffer fb = BufferUtils.createFloatBuffer(9);
+        FloatBuffer fb = BufferUtilsCreator.createFloatBuffer(9);
 
         fb.put(m00).put(m01).put(m02);
         fb.put(m10).put(m11).put(m12);

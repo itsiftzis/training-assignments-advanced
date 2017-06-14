@@ -38,7 +38,8 @@ import com.jme3.math.FastMath;
 import com.jme3.texture.Image;
 import com.jme3.texture.Image.Format;
 import com.jme3.texture.image.ColorSpace;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -142,11 +143,11 @@ public class HDRLoader implements AssetLoader {
     private boolean decodeScanlineRLE(InputStream in, int width) throws IOException{
         // must deocde RLE data into temp buffer before converting to float
         if (rleTempBuffer == null){
-            rleTempBuffer = BufferUtils.createByteBuffer(width * 4);
+            rleTempBuffer = BufferUtilsCreator.createByteBuffer(width * 4);
         }else{
             rleTempBuffer.clear();
             if (rleTempBuffer.remaining() < width * 4)
-                rleTempBuffer = BufferUtils.createByteBuffer(width * 4);
+                rleTempBuffer = BufferUtilsCreator.createByteBuffer(width * 4);
         }
         
 	// read each component seperately
@@ -296,7 +297,7 @@ public class HDRLoader implements AssetLoader {
             pixelFormat = Format.RGB16F;
         }
 
-        dataStore = BufferUtils.createByteBuffer(width * height * pixelFormat.getBitsPerPixel());
+        dataStore = BufferUtilsCreator.createByteBuffer(width * height * pixelFormat.getBitsPerPixel());
 
         int bytesPerPixel = pixelFormat.getBitsPerPixel() / 8;
         int scanLineBytes = bytesPerPixel * width;

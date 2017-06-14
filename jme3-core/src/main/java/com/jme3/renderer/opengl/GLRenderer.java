@@ -81,7 +81,7 @@ import com.jme3.texture.Texture;
 import com.jme3.texture.Texture.ShadowCompareMode;
 import com.jme3.texture.Texture.WrapAxis;
 import com.jme3.texture.image.LastTextureState;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 import com.jme3.util.ListMap;
 import com.jme3.util.MipMapGenerator;
 import com.jme3.util.NativeObjectManager;
@@ -92,11 +92,11 @@ public final class GLRenderer implements Renderer {
     private static final boolean VALIDATE_SHADER = false;
     private static final Pattern GLVERSION_PATTERN = Pattern.compile(".*?(\\d+)\\.(\\d+).*");
 
-    private final ByteBuffer nameBuf = BufferUtils.createByteBuffer(250);
+    private final ByteBuffer nameBuf = BufferUtilsCreator.createByteBuffer(250);
     private final StringBuilder stringBuf = new StringBuilder(250);
-    private final IntBuffer intBuf1 = BufferUtils.createIntBuffer(1);
-    private final IntBuffer intBuf16 = BufferUtils.createIntBuffer(16);
-    private final FloatBuffer floatBuf16 = BufferUtils.createFloatBuffer(16);
+    private final IntBuffer intBuf1 = BufferUtilsCreator.createIntBuffer(1);
+    private final IntBuffer intBuf16 = BufferUtilsCreator.createIntBuffer(16);
+    private final FloatBuffer floatBuf16 = BufferUtilsCreator.createFloatBuffer(16);
     private final RenderContext context = new RenderContext();
     private final NativeObjectManager objManager = new NativeObjectManager();
     private final EnumSet<Caps> caps = EnumSet.noneOf(Caps.class);
@@ -1659,7 +1659,7 @@ public final class GLRenderer implements Renderer {
         setFrameBuffer(fb);
 
         Vector2f[] samplePositions = new Vector2f[fb.getSamples()];
-        FloatBuffer samplePos = BufferUtils.createFloatBuffer(2);
+        FloatBuffer samplePos = BufferUtilsCreator.createFloatBuffer(2);
         for (int i = 0; i < samplePositions.length; i++) {
             glext.glGetMultisample(GLExt.GL_SAMPLE_POSITION, i, samplePos);
             samplePos.clear();

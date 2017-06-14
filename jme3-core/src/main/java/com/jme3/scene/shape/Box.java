@@ -34,7 +34,8 @@ package com.jme3.scene.shape;
 
 import com.jme3.math.Vector3f;
 import com.jme3.scene.VertexBuffer.Type;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.FloatBuffer;
 
 /**
@@ -146,24 +147,24 @@ public class Box extends AbstractBox {
 
     protected void duUpdateGeometryIndices() {
         if (getBuffer(Type.Index) == null){
-            setBuffer(Type.Index, 3, BufferUtils.createShortBuffer(GEOMETRY_INDICES_DATA));
+            setBuffer(Type.Index, 3, BufferUtilsCreator.createShortBuffer(GEOMETRY_INDICES_DATA));
         }
     }
 
     protected void duUpdateGeometryNormals() {
         if (getBuffer(Type.Normal) == null){
-            setBuffer(Type.Normal, 3, BufferUtils.createFloatBuffer(GEOMETRY_NORMALS_DATA));
+            setBuffer(Type.Normal, 3, BufferUtilsCreator.createFloatBuffer(GEOMETRY_NORMALS_DATA));
         }
     }
 
     protected void duUpdateGeometryTextures() {
         if (getBuffer(Type.TexCoord) == null){
-            setBuffer(Type.TexCoord, 2, BufferUtils.createFloatBuffer(GEOMETRY_TEXTURE_DATA));
+            setBuffer(Type.TexCoord, 2, BufferUtilsCreator.createFloatBuffer(GEOMETRY_TEXTURE_DATA));
         }
     }
 
     protected void duUpdateGeometryVertices() {
-        FloatBuffer fpb = BufferUtils.createVector3Buffer(24);
+        FloatBuffer fpb = BufferUtilsCreator.createVector3Buffer(24);
         Vector3f[] v = computeVertices();
         fpb.put(new float[] {
                 v[0].x, v[0].y, v[0].z, v[1].x, v[1].y, v[1].z, v[2].x, v[2].y, v[2].z, v[3].x, v[3].y, v[3].z, // back

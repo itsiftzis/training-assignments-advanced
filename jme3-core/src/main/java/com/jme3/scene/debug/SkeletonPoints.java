@@ -39,7 +39,7 @@ import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.VertexBuffer.Format;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 
 import java.nio.FloatBuffer;
 import java.util.Map;
@@ -80,7 +80,7 @@ public class SkeletonPoints extends Mesh {
         }
 
         VertexBuffer pb = new VertexBuffer(Type.Position);
-        FloatBuffer fpb = BufferUtils.createFloatBuffer(pointsCount * 3);
+        FloatBuffer fpb = BufferUtilsCreator.createFloatBuffer(pointsCount * 3);
         pb.setupData(Usage.Stream, 3, Format.Float, fpb);
         this.setBuffer(pb);
 

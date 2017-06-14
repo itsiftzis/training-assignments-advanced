@@ -47,6 +47,8 @@ import com.jme3.texture.Texture;
 import com.jme3.texture.Texture2D;
 import com.jme3.texture.image.ColorSpace;
 import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.lang.reflect.InvocationTargetException;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -355,7 +357,7 @@ public class TextureAtlas {
             if (clazz == null) {
                 return null;
             }
-            Image newImage = new Image(format, source.getWidth(), source.getHeight(), BufferUtils.createByteBuffer(source.getWidth() * source.getHeight() * 4), null, ColorSpace.Linear);
+            Image newImage = new Image(format, source.getWidth(), source.getHeight(), BufferUtilsCreator.createByteBuffer(source.getWidth() * source.getHeight() * 4), null, ColorSpace.Linear);
             clazz.getMethod("convert", Image.class, Image.class).invoke(clazz.newInstance(), source, newImage);
             return newImage;
         } catch (InstantiationException ex) {

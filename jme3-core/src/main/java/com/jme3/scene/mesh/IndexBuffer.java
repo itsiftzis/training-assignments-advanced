@@ -31,7 +31,8 @@
  */
 package com.jme3.scene.mesh;
 
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
@@ -70,9 +71,9 @@ public abstract class IndexBuffer {
      */
     public static IndexBuffer createIndexBuffer(int vertexCount, int indexCount){
         if (vertexCount > 65535){
-            return new IndexIntBuffer(BufferUtils.createIntBuffer(indexCount));
+            return new IndexIntBuffer(BufferUtilsCreator.createIntBuffer(indexCount));
         }else{
-            return new IndexShortBuffer(BufferUtils.createShortBuffer(indexCount));
+            return new IndexShortBuffer(BufferUtilsCreator.createShortBuffer(indexCount));
         }
     }
     

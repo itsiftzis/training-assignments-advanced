@@ -36,14 +36,15 @@ import com.jme3.scene.Mesh;
 import com.jme3.scene.VertexBuffer;
 import com.jme3.scene.VertexBuffer.Type;
 import com.jme3.scene.VertexBuffer.Usage;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.nio.FloatBuffer;
 
 public class WireFrustum extends Mesh {
 
     public WireFrustum(Vector3f[] points){
         if (points != null)
-            setBuffer(Type.Position, 3, BufferUtils.createFloatBuffer(points));
+            setBuffer(Type.Position, 3, BufferUtilsCreator.createFloatBuffer(points));
 
         setBuffer(Type.Index, 2,
                 new short[]{
@@ -70,11 +71,11 @@ public class WireFrustum extends Mesh {
     public void update(Vector3f[] points){
         VertexBuffer vb = getBuffer(Type.Position);
         if (vb == null){
-            setBuffer(Type.Position, 3, BufferUtils.createFloatBuffer(points));
+            setBuffer(Type.Position, 3, BufferUtilsCreator.createFloatBuffer(points));
             return;
         }
 
-        FloatBuffer b = BufferUtils.createFloatBuffer(points);
+        FloatBuffer b = BufferUtilsCreator.createFloatBuffer(points);
         FloatBuffer a = (FloatBuffer) vb.getData();
         b.rewind();
         a.rewind();

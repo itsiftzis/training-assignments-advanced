@@ -37,7 +37,8 @@ import com.jme3.asset.TextureKey;
 import com.jme3.math.FastMath;
 import com.jme3.texture.Image;
 import com.jme3.texture.Image.Format;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -464,7 +465,7 @@ public final class TGALoader implements AssetLoader {
 
         in.close();
         // Get a pointer to the image memory
-        ByteBuffer scratch = BufferUtils.createByteBuffer(rawData.length);
+        ByteBuffer scratch = BufferUtilsCreator.createByteBuffer(rawData.length);
         scratch.clear();
         scratch.put(rawData);
         scratch.rewind();

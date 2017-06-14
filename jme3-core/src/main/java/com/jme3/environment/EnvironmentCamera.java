@@ -47,7 +47,7 @@ import com.jme3.texture.Image;
 import com.jme3.texture.Texture2D;
 import com.jme3.texture.TextureCubeMap;
 import com.jme3.texture.image.ColorSpace;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -182,7 +182,7 @@ public class EnvironmentCamera extends BaseAppState {
             viewports[i].clearScenes();
             viewports[i].attachScene(job.scene);
             renderManager.renderViewPort(viewports[i], 0.16f);
-            buffers[i] = BufferUtils.createByteBuffer(size * size * imageFormat.getBitsPerPixel() / 8);
+            buffers[i] = BufferUtilsCreator.createByteBuffer(size * size * imageFormat.getBitsPerPixel() / 8);
             renderManager.getRenderer().readFrameBufferWithFormat(framebuffers[i], buffers[i], imageFormat);
             images[i] = new Image(imageFormat, size, size, buffers[i], ColorSpace.Linear);
         }

@@ -44,8 +44,8 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.system.JmeSystem;
 import com.jme3.texture.FrameBuffer;
-import com.jme3.texture.Image;
-import com.jme3.util.BufferUtils;
+import com.jme3.util.BufferUtilsCreator;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -208,7 +208,7 @@ public class ScreenshotAppState extends AbstractAppState implements ActionListen
     }
 
     public void reshape(ViewPort vp, int w, int h) {
-        outBuf = BufferUtils.createByteBuffer(w * h * 4);
+        outBuf = BufferUtilsCreator.createByteBuffer(w * h * 4);
         width = w;
         height = h;
     }
