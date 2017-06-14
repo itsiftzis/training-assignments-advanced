@@ -105,13 +105,13 @@ public final class SinglePassAndImageBasedLightingLogic extends DefaultTechnique
      * g_LightPosition.w is the inverse radius (1/r) of the light (for
      * attenuation) <br/> </p>
      */
-    protected int updateLightListUniforms(Shader shader, Geometry g, LightList lightList, int numLights, RenderManager rm, int startIndex, int lastTexUnit) {
-        if (numLights == 0) { // this shader does not do lighting, ignore.
+    protected int updateLightListUniforms(Shader shader, LightList lightList, LightListDetails lightListDetails, RenderManager rm) {
+        if (lightListDetails.getNumLights() == 0) { // this shader does not do lighting, ignore.
             return 0;
         }
 
         Uniform lightData = shader.getUniform("g_LightData");
-        lightData.setVector4Length(numLights * 3);//8 lights * max 3
+        lightData.setVector4Length(lightListDetails.getNumLights() * 3);//8 lights * max 3
         Uniform ambientColor = shader.getUniform("g_AmbientLightColor");
         Uniform lightProbeData = shader.getUniform("g_LightProbeData");
         lightProbeData.setVector4Length(1);
@@ -119,7 +119,7 @@ public final class SinglePassAndImageBasedLightingLogic extends DefaultTechnique
         Uniform lightProbePemMap = shader.getUniform("g_PrefEnvMap");
 
         lightProbe = null;
-        if (startIndex != 0) {
+        if (lightListDetails.getStartIndex() != 0) {
             // apply additive blending for 2nd and future passes
             rm.getRenderer().applyRenderState(ADDITIVE_LIGHT);
             ambientColor.setValue(VarType.Vector4, ColorRGBA.Black);
@@ -133,6 +133,7 @@ public final class SinglePassAndImageBasedLightingLogic extends DefaultTechnique
             BoundingSphere s = (BoundingSphere)lightProbe.getBounds();
             lightProbeData.setVector4InArray(lightProbe.getPosition().x, lightProbe.getPosition().y, lightProbe.getPosition().z, 1f/s.getRadius(), 0);
             //assigning new texture indexes
+            int lastTexUnit = lightListDetails.getLastTexUnit();
             int irrUnit = lastTexUnit++;
             int pemUnit = lastTexUnit++;
 
@@ -149,8 +150,8 @@ public final class SinglePassAndImageBasedLightingLogic extends DefaultTechnique
         TempVars vars = TempVars.get();
         Vector4f tmpVec = vars.vect4f1;
         int curIndex;
-        int endIndex = numLights + startIndex;
-        for (curIndex = startIndex; curIndex < endIndex && curIndex < lightList.size(); curIndex++) {
+        int endIndex = lightListDetails.getNumLights() + lightListDetails.getStartIndex();
+        for (curIndex = lightListDetails.getStartIndex(); curIndex < endIndex && curIndex < lightList.size(); curIndex++) {
 
 
             Light l = lightList.get(curIndex);
@@ -216,7 +217,7 @@ public final class SinglePassAndImageBasedLightingLogic extends DefaultTechnique
         vars.release();
 
         //Padding of unsued buffer space
-        while(lightDataIndex < numLights * 3) {
+        while(lightDataIndex < lightListDetails.getNumLights() * 3) {
             lightData.setVector4InArray(0f, 0f, 0f, 0f, lightDataIndex);
             lightDataIndex++;
         }
@@ -229,12 +230,12 @@ public final class SinglePassAndImageBasedLightingLogic extends DefaultTechnique
         Renderer renderer = renderManager.getRenderer();
         int batchSize = renderManager.getSinglePassLightBatchSize();
         if (lights.size() == 0) {
-            updateLightListUniforms(shader, geometry, lights,batchSize, renderManager, 0, lastTexUnit);
+            updateLightListUniforms(shader, lights, new LightListDetails(batchSize, 0, lastTexUnit), renderManager);
             renderer.setShader(shader);
             renderMeshFromGeometry(renderer, geometry);
         } else {
             while (nbRenderedLights < lights.size()) {
-                nbRenderedLights = updateLightListUniforms(shader, geometry, lights, batchSize, renderManager, nbRenderedLights, lastTexUnit);
+                nbRenderedLights = updateLightListUniforms(shader, lights, new LightListDetails(batchSize, nbRenderedLights, lastTexUnit), renderManager);
                 renderer.setShader(shader);
                 renderMeshFromGeometry(renderer, geometry);
             }
@@ -264,5 +265,35 @@ public final class SinglePassAndImageBasedLightingLogic extends DefaultTechnique
         }
         ambientLightColor.a = 1.0f;
         return probe;
+    }
+
+    private static class LightListDetails {
+        private final int numLights;
+        private final int startIndex;
+        private int lastTexUnit;
+
+        /**
+         */
+        private LightListDetails(int numLights, int startIndex, int lastTexUnit) {
+            this.numLights = numLights;
+            this.startIndex = startIndex;
+            this.lastTexUnit = lastTexUnit;
+        }
+
+        public int getNumLights() {
+            return numLights;
+        }
+
+        public int getStartIndex() {
+            return startIndex;
+        }
+
+        public int getLastTexUnit() {
+            return lastTexUnit;
+        }
+
+        public void setLastTexUnit(int lastTexUnit) {
+            this.lastTexUnit = lastTexUnit;
+        }
     }
 }
